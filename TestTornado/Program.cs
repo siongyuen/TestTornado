@@ -5,6 +5,7 @@ using System.Text;
 using System.Net;
 using System.IO;
 using System.Text.Json;
+using System.Diagnostics;
 
 namespace TestTornado
 {
@@ -63,6 +64,9 @@ namespace TestTornado
 
         static void Main(string[] args)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            
             HttpWebResponse response;
             try
             {
@@ -100,6 +104,7 @@ namespace TestTornado
                 Console.ReadKey();
                 System.Environment.Exit(2);
             }
+            Console.Out.WriteLine($"Time Used miliseconds: {stopwatch.ElapsedMilliseconds}"); 
             Console.Out.WriteLine("Press any key");
             Console.ReadKey();
         }
