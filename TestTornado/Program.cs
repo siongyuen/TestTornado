@@ -41,7 +41,7 @@ namespace TestTornado
     ///
     class CSRenderExample
     {
-        private static string DWS_RENDER_URL = "http://localhost:8090/api/render";
+        private static string DWS_RENDER_URL = "http://localhost:8080/api/render";
 
         // Set your access key here.  The access key is only required if configured in Tornado.
         private const string ACCESS_KEY = "";
@@ -50,10 +50,10 @@ namespace TestTornado
         private const string OUTPUT_FORMAT = "docx";
 
         // the name of the template (stored in Tornado) to use
-        private const string TEMPLATE = "samples/HK23NN1.DOCX";
+        private const string TEMPLATE = "samples/RepeatingTemplate.DOCX";
 
         // the name of the file we are going to write the document to
-        private const string OUTPUT_FILE = "HK23NN1." + OUTPUT_FORMAT;
+        private const string OUTPUT_FILE = "RepeatingTemplate." + OUTPUT_FORMAT;
 
         // Proxy settings if needed to reach the internet
         private const string PROXY_HOST = "";
@@ -126,7 +126,7 @@ namespace TestTornado
                 request.Proxy = proxy;
             }
 
-            string renderRequest = BuildRequest2();
+            string renderRequest = BuildRequest();
         
             byte[] data = new UTF8Encoding().GetBytes(renderRequest);
 
@@ -197,6 +197,18 @@ namespace TestTornado
                         new Product
                         {
                             Name = "Keyboard", Id = "P003", Quantity = 1, Price = 50m, Discount = 0m, OutOfStock = false
+                        },
+                         new Product
+                        {
+                            Name = "Laptop 2", Id = "P004", Quantity = 1, Price = 3000m, Discount = 10m, OutOfStock = false
+                        },
+                        new Product
+                        {
+                            Name = "Mouse 2", Id = "P005", Quantity = 2, Price = 25m, Discount = 0m, OutOfStock = false
+                        },
+                        new Product
+                        {
+                            Name = "Keyboard 2", Id = "P006", Quantity = 1, Price = 50m, Discount = 0m, OutOfStock = false
                         }
                     }
                 },
@@ -212,7 +224,16 @@ namespace TestTornado
                         new Product
                         {
                             Name = "Charger", Id = "P005", Quantity = 1, Price = 20m, Discount = 0m, OutOfStock = true
+                        },
+                             new Product
+                        {
+                            Name = "Smartphone 2", Id = "P006", Quantity = 1, Price = 800m, Discount = 50m, OutOfStock = false
+                        },
+                        new Product
+                        {
+                            Name = "Charger 2", Id = "P005", Quantity = 1, Price = 20m, Discount = 0m, OutOfStock = true
                         }
+
                     }
                 },
                 new Customer
@@ -231,6 +252,18 @@ namespace TestTornado
                         new Product
                         {
                             Name = "Stylus Pen", Id = "P008", Quantity = 1, Price = 15m, Discount = 0m, OutOfStock = true
+                        },
+                            new Product
+                        {
+                            Name = "Tablet 2", Id = "P016", Quantity = 1, Price = 1500m, Discount = 10m, OutOfStock = false
+                        },
+                        new Product
+                        {
+                            Name = "Tablet Case 2", Id = "P007", Quantity = 1, Price = 30m, Discount = 5m, OutOfStock = false
+                        },
+                        new Product
+                        {
+                            Name = "Stylus Pen 2", Id = "P008", Quantity = 1, Price = 15m, Discount = 0m, OutOfStock = true
                         }
                     }
                 }
