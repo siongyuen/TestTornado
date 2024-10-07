@@ -183,7 +183,7 @@ namespace TestTornado
             {
                 new Customer
                 {
-                    Name = "约翰亨利",
+                    Name = "约翰亨利 John Henry",
                     Products = new List<Product>
                     {
                         new Product
