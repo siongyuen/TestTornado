@@ -8,12 +8,12 @@ namespace TestTornado
 {
     public class DataGenerator
     {
-        public static object GetData()
+        public static Customers GetData()
         {
-            return new
+            return new Customers 
             {
                 customers = new List<Customer>
-        {
+            {
             new Customer
             {
                 Name = "约翰亨利 John Henry",
