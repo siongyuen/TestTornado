@@ -33,9 +33,9 @@ namespace TestTornado
     {
         public string Name { get; set; }
         public string Email { get; set; }
-        public List<Product> Products { get; set; }
+        public List<Order> Orders { get; set; }
     }
-    public class Product
+    public class Order
     {
         public string Id { get; set; }
         public string Name { get; set; }
