@@ -88,7 +88,7 @@ namespace TestTornado
                 templateName = TEMPLATE,
                 outputName = OUTPUT_FILE,
                 outputFormat = OUTPUT_FORMAT,
-                data = DataGenerator.GetData()
+                data =  DataGenerator.GetCustomers()
             };
 
             return JsonSerializer.Serialize(requestObject, new JsonSerializerOptions { WriteIndented = true });

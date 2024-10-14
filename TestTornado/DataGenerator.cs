@@ -8,9 +8,43 @@ namespace TestTornado
 {
     public class DataGenerator
     {
-        public static Customers GetData()
+        public static RootData GetData()
         {
-            return new Customers 
+            RootData rootData = new RootData( GetStock(),GetCustomers());
+            return rootData;
+        }
+
+        private static Stock GetStock()
+        {
+            return new Stock
+            {
+                stock = new List<Product>
+                    {new() {
+                        Name = "Laptop", Id = "P001", Quantity = 100, Price = 1000m, Discount = 100m, OutOfStock = false
+                    },
+                    new() {
+                        Name = "Mouse", Id = "P002", Quantity = 200, Price = 25m, Discount = 0m, OutOfStock = false
+                    },
+                    new() {
+                        Name = "Keyboard", Id = "P003", Quantity = 300, Price = 50m, Discount = 0m, OutOfStock = false
+                    },
+                    new() {
+                        Name = "Laptop 2", Id = "P004", Quantity = 10, Price = 3000m, Discount = 10m, OutOfStock = false
+                    },
+                    new() {
+                        Name = "Mouse 2", Id = "P005", Quantity = 30, Price = 25m, Discount = 0m, OutOfStock = false
+                    },
+                    new() {
+                        Name = "Keyboard 2", Id = "P006", Quantity = 40, Price = 50m, Discount = 0m, OutOfStock = false
+                    }
+                    }
+            };
+            
+        }
+
+        public static Customers  GetCustomers()
+        {
+            return new Customers
             {
                 customers = new List<Customer>
             {
