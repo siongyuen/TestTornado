@@ -4,14 +4,10 @@ namespace TestTornado
 {
     public class RootObject
     {
-        public RootObject(List<StockItem> stockItems, List<Customer> customers) 
-        { 
-            Stock = stockItems;
-            Customers = customers;
-
-        }
+   
         public List<StockItem> Stock { get; set; }
         public List<Customer> Customers { get; set; }
+        public string dispatchLabel { get; set; }
         
     }
 
@@ -21,10 +17,7 @@ namespace TestTornado
         public string Quantity { get; set; }
     }
 
-    public class Customers
-    {
-        public List<Customer> customers { get; set; }
-    }
+  
     public class Customer
     {
         public string Name { get; set; }

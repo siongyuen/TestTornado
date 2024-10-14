@@ -11,7 +11,12 @@ namespace TestTornado
     {
         public static RootObject  GetData()
         {
-            var data = new RootObject(GetStockItems(), GetCustomers());
+            var data = new RootObject
+            {
+                Customers = GetCustomers(),
+                Stock = GetStockItems(),
+                dispatchLabel = "https://quantios.com"
+            };
             return data;
         }
             
