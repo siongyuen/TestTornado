@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace TestTornado
 {
-    public class RootData
+    public class RootObject
     {
-        public RootData(Stock stock, Customers customers)
-        {
-            Stock = stock;
+        public RootObject(List<StockItem> stockItems, List<Customer> customers) 
+        { 
+            Stock = stockItems;
             Customers = customers;
-            Name = "Root";
-        }
-        public string Name { get; set; }
 
-        public Stock Stock { get; set; }
-        public Customers Customers { get; set; }
+        }
+        public List<StockItem> Stock { get; set; }
+        public List<Customer> Customers { get; set; }
+        
     }
-    public class Stock
+
+    public class StockItem
     {
-        public List<Product> stock { get; set; }
+        public string Name { get; set; }
+        public string Quantity { get; set; }
     }
 
     public class Customers
