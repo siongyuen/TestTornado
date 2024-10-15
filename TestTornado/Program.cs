@@ -15,13 +15,8 @@ namespace TestTornado
 
         // Set your access key here. The access key is only required if configured in Tornado.
         private const string ACCESS_KEY = "";
-
         // The output format we want to produce (pdf, doc, odt, and more exist)
-        private const string OUTPUT_FORMAT = "docx";
-
-        // The name of the template (stored in Tornado) to use
-        private const string TEMPLATE = "samples/GNIR24AP01.DOCX";
-
+        private const string OUTPUT_FORMAT = "docx";       
         // The name of the file we are going to write the document to
         private const string OUTPUT_FILE = "Output." + OUTPUT_FORMAT;
 
@@ -32,7 +27,10 @@ namespace TestTornado
 
             try
             {
-                var responseStream = await SendRequestAsync();
+                Console.WriteLine("Type '1' for GI19FDMSO1 " +
+                    "               or '2' for GNIR24AP01");
+                string type = Console.ReadLine();
+                var responseStream = await SendRequestAsync(type);
                 if (responseStream != null)
                 {
                     await SaveToFileAsync(responseStream, OUTPUT_FILE);
@@ -55,11 +53,11 @@ namespace TestTornado
         }
 
         /// Sends the request to the server and returns the response stream.
-        private static async Task<Stream> SendRequestAsync()
+        private static async Task<Stream> SendRequestAsync(string type)
         {
             using (HttpClient client = new HttpClient())
             {
-                string renderRequest = BuildRequest();
+                string renderRequest = BuildRequest(type);
 
                 // Prepare the request content
                 StringContent content = new StringContent(renderRequest, Encoding.UTF8, "application/json");
@@ -80,15 +78,29 @@ namespace TestTornado
         }
 
         /// Build the request in JSON format.
-        private static string BuildRequest()
+        private static string BuildRequest(string type )
         {
+            object mydata=null;
+            string template=string.Empty;
+            if (type == "1")
+            {
+                mydata = TestTornado.Forms.GI19FDMS01.DataGenerator.GetData();
+                template = "samples/GI19FDMS01.DOCX";
+            }
+            else if (type == "2")
+            {
+                mydata = TestTornado.Forms.GNIR24AP01.DataGenerator.GetData();
+                template = "samples/GNIR24AP01.DOCX";
+            }
+               
+
             var requestObject = new
             {
                 accessKey = ACCESS_KEY,
-                templateName = TEMPLATE,
+                templateName = template,
                 outputName = OUTPUT_FILE,
                 outputFormat = OUTPUT_FORMAT,
-                data = TestTornado.Forms.GNIR24AP01.DataGenerator.GetData()
+                data = mydata
             };
 
             return JsonSerializer.Serialize(requestObject, new JsonSerializerOptions { WriteIndented = true });
