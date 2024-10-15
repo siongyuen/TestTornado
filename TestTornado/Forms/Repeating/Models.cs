@@ -1,12 +1,10 @@
-﻿
-
-namespace TestTornado
+﻿namespace TestTornado.Forms.Repeating
 {
     public class RootObject
-    {   
+    {
         public List<StockItem> Stock { get; set; }
         public List<Customer> Customers { get; set; }
-        public string dispatchLabel { get; set; }        
+        public string dispatchLabel { get; set; }
     }
 
     public class StockItem
@@ -15,7 +13,7 @@ namespace TestTornado
         public string Quantity { get; set; }
     }
 
-  
+
     public class Customer
     {
         public string Name { get; set; }

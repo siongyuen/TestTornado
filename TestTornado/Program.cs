@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using TestTornado.Forms.Repeating;
 
 namespace TestTornado
 {
@@ -86,7 +87,7 @@ namespace TestTornado
             string template=string.Empty;
             if (type == "0")
             {
-                myData = TestTornado.DataGenerator.GetData();
+                myData = Forms.Repeating.DataGenerator.GetData();
                 template = "samples/RepeatingTemplate.docx";
             }
             else if (type == "1")

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestTornado
+namespace TestTornado.Forms.Repeating
 {
     public class DataGenerator
     {
-        public static RootObject  GetData()
+        public static RootObject GetData()
         {
             var data = new RootObject
             {
@@ -19,7 +19,7 @@ namespace TestTornado
             };
             return data;
         }
-            
+
 
         public static List<StockItem> GetStockItems()
         {
@@ -125,7 +125,7 @@ namespace TestTornado
                 }
             }
         };
-            
+
         }
     }
 }
