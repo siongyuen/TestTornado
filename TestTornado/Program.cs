@@ -20,10 +20,10 @@ namespace TestTornado
         private const string OUTPUT_FORMAT = "docx";
 
         // The name of the template (stored in Tornado) to use
-        private const string TEMPLATE = "samples/RepeatingTemplate.DOCX";
+        private const string TEMPLATE = "samples/GNIR24AP01.DOCX";
 
         // The name of the file we are going to write the document to
-        private const string OUTPUT_FILE = "RepeatingTemplate." + OUTPUT_FORMAT;
+        private const string OUTPUT_FILE = "Output." + OUTPUT_FORMAT;
 
         static async Task Main(string[] args)
         {
@@ -88,7 +88,7 @@ namespace TestTornado
                 templateName = TEMPLATE,
                 outputName = OUTPUT_FILE,
                 outputFormat = OUTPUT_FORMAT,
-                data =  DataGenerator.GetData()
+                data = TestTornado.Forms.GNIR24AP01.DataGenerator.GetData()
             };
 
             return JsonSerializer.Serialize(requestObject, new JsonSerializerOptions { WriteIndented = true });
@@ -102,6 +102,20 @@ namespace TestTornado
             }
 
             Console.WriteLine($"Created file: {outputFilePath}");
+            OpenDocxFile(outputFilePath);
+        }
+
+        private static void OpenDocxFile(string filePath)
+        {
+            try
+            {
+                // Use Process.Start to open the file with the default application
+                Process.Start(new ProcessStartInfo(filePath) { UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error opening file: {ex.Message}");
+            }
         }
 
         /// Handle error responses

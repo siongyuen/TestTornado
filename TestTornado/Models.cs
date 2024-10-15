@@ -3,12 +3,10 @@
 namespace TestTornado
 {
     public class RootObject
-    {
-   
+    {   
         public List<StockItem> Stock { get; set; }
         public List<Customer> Customers { get; set; }
-        public string dispatchLabel { get; set; }
-        
+        public string dispatchLabel { get; set; }        
     }
 
     public class StockItem
