@@ -61,7 +61,7 @@ public class Individual
     public string Occupation { get; set; }
 }
 
-public class Directors
+public class Director
 {
     public string Title { get; set; }
     public string LastName { get; set; }
@@ -107,6 +107,6 @@ public class FullRecord
     public string PassportOrIncorporationNo { get; set; }
     public Individual Individual { get; set; }
     public ServiceAddressOrResidentialAddress ServiceAddressOrResidentialAddress { get; set; }
-    public List<Directors> Directors { get; set; }
+    public List<Director> Directors { get; set; }
     public Presenter Presenter { get; set; }
 }

@@ -75,9 +75,9 @@ namespace TestTornado.Forms.EAW18AR01
                 PostCode = "W1U 8EX",
                 Country = "UK"
             },
-            Directors = new List<Directors>
+            Directors = new List<Director>
             {
-                new Directors
+                new Director
                 {
                     Title = "Mr",
                     LastName = "Doe",
@@ -96,7 +96,7 @@ namespace TestTornado.Forms.EAW18AR01
                     CountryRegion = "UK",
                     PostCode = "EC1A 4HJ"
                 },
-                new Directors
+                new Director
                 {
                     Title = "Ms",
                     LastName = "Doe",
