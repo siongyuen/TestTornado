@@ -27,8 +27,10 @@ namespace TestTornado
 
             try
             {
-                Console.WriteLine("Type '1' for GI19FDMSO1 " +
-                    "               or '2' for GNIR24AP01");
+                Console.WriteLine("Type \n" +
+                                "'0' for Repeating \n" +
+                                "'1' for GI19FDMSO1 \n" +
+                                "'2' for GNIR24AP01");
                 string type = Console.ReadLine();
                 var responseStream = await SendRequestAsync(type);
                 if (responseStream != null)
@@ -80,19 +82,25 @@ namespace TestTornado
         /// Build the request in JSON format.
         private static string BuildRequest(string type )
         {
-            object mydata=null;
+            object? myData=null;
             string template=string.Empty;
-            if (type == "1")
+            if (type == "0")
             {
-                mydata = TestTornado.Forms.GI19FDMS01.DataGenerator.GetData();
+                myData = TestTornado.DataGenerator.GetData();
+                template = "samples/RepeatingTemplate.docx";
+            }
+            else if (type == "1")
+            {
+                myData = TestTornado.Forms.GI19FDMS01.DataGenerator.GetData();
                 template = "samples/GI19FDMS01.DOCX";
             }
             else if (type == "2")
             {
-                mydata = TestTornado.Forms.GNIR24AP01.DataGenerator.GetData();
+                myData = TestTornado.Forms.GNIR24AP01.DataGenerator.GetData();
                 template = "samples/GNIR24AP01.DOCX";
             }
-               
+           
+
 
             var requestObject = new
             {
@@ -100,7 +108,7 @@ namespace TestTornado
                 templateName = template,
                 outputName = OUTPUT_FILE,
                 outputFormat = OUTPUT_FORMAT,
-                data = mydata
+                data = myData
             };
 
             return JsonSerializer.Serialize(requestObject, new JsonSerializerOptions { WriteIndented = true });
