@@ -27,7 +27,8 @@ namespace TestTornado
                                 "'0' for Repeating \n" +
                                 "'1' for GI19FDMSO1 \n" +
                                 "'2' for GNIR24AP01 \n" +
-                                "'3' for EAW18AR01");
+                                "'3' for EAW18AR01 \n" +
+                                "'4' for HK23NAR1 ");
                 string type = Console.ReadLine();
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
@@ -105,7 +106,12 @@ namespace TestTornado
                 myData = TestTornado.Forms.EAW18AR01.DataGenerator.GetData();
                 template = "samples/EAW18AR01.docx";
             }
-           
+            else if (type == "4")
+            {
+                myData = TestTornado.Forms.HK23NAR1.DataGenerator.GetData();
+                template = "samples/HK23NAR1.docx";
+            }
+
 
 
             var requestObject = new
