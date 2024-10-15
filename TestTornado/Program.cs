@@ -23,8 +23,7 @@ namespace TestTornado
 
         static async Task Main(string[] args)
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
+          
 
             try
             {
@@ -33,6 +32,8 @@ namespace TestTornado
                                 "'1' for GI19FDMSO1 \n" +
                                 "'2' for GNIR24AP01");
                 string type = Console.ReadLine();
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
                 var responseStream = await SendRequestAsync(type);
                 if (responseStream != null)
                 {
