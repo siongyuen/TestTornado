@@ -14,7 +14,7 @@ namespace TestTornado.Forms.HK23NAR1
             {
                 CLIENT = new Client
                 {
-                    CompanyName = "Tech Innovations Ltd",
+                    CompanyName = "科技創新有限公司",
                     BusinessName = "Tech Innovations",
                     BusinessNatureCode = "5010",
                     BusinessNature = "Software Development",
