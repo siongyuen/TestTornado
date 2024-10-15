@@ -26,7 +26,8 @@ namespace TestTornado
                 Console.WriteLine("Type \n" +
                                 "'0' for Repeating \n" +
                                 "'1' for GI19FDMSO1 \n" +
-                                "'2' for GNIR24AP01");
+                                "'2' for GNIR24AP01 \n" +
+                                "'3' for EAW18AR01");
                 string type = Console.ReadLine();
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
@@ -98,6 +99,11 @@ namespace TestTornado
             {
                 myData = TestTornado.Forms.GNIR24AP01.DataGenerator.GetData();
                 template = "samples/GNIR24AP01.DOCX";
+            }
+            else if (type == "3")
+            {
+                myData = TestTornado.Forms.EAW18AR01.DataGenerator.GetData();
+                template = "samples/EAW18AR01.docx";
             }
            
 
