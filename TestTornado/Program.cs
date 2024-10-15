@@ -22,11 +22,7 @@ namespace TestTornado
         private const string OUTPUT_FILE = "Output." + OUTPUT_FORMAT;
 
         static async Task Main(string[] args)
-        {
-          
-
-            try
-            {
+        {        
                 Console.WriteLine("Type \n" +
                                 "'0' for Repeating \n" +
                                 "'1' for GI19FDMSO1 \n" +
@@ -34,6 +30,8 @@ namespace TestTornado
                 string type = Console.ReadLine();
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
+            try
+            {
                 var responseStream = await SendRequestAsync(type);
                 if (responseStream != null)
                 {
