@@ -19,8 +19,12 @@ namespace TestTornado.Forms.HK23NAR1
         public string Email { get; set; }
         public string PhoneNo { get; set; }
         public Secretary FirstSecretary { get; set; }
+        public string NumberOfIndividualSecretaries { get; set; }
         public List<Secretary> IndividualSecretaries { get; set; }
         public List<Secretary> CorporateSecretaries { get; set; }
+        public string ParticularMember1 { get; set; }
+        public string ParticularMember2 { get; set; }
+        public string ParticularMember3 { get; set; }
     }
 
     public class Secretary

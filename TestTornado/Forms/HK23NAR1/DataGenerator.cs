@@ -47,6 +47,8 @@ namespace TestTornado.Forms.HK23NAR1
                         AddressLine3 = "Kuala Lumpur",
                         EmailAddress = "evelynlee@example.com"
                     },
+                    NumberOfIndividualSecretaries = "3"
+                    ,
                     IndividualSecretaries = new List<Secretary>
                     {
                      
@@ -118,7 +120,11 @@ namespace TestTornado.Forms.HK23NAR1
                             EmailAddress = "melissaw@example.com"
                         }
                      ,
-                    }
+                    },
+                            ParticularMember1 ="Y",
+                            ParticularMember2 ="N",
+                            ParticularMember3 ="Y",
+
                 },
                 Building = new Building
                 {
