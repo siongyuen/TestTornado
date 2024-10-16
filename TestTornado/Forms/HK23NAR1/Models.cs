@@ -18,7 +18,26 @@ namespace TestTornado.Forms.HK23NAR1
         public MainIndAppt MAININDAPPT { get; set; }
         public string Email { get; set; }
         public string PhoneNo { get; set; }
+        public List<Secretary> Secretaries { get; set; }
     }
+
+    public class Secretary
+    {
+        public string SecretaryType { get; set; }
+        public string ChineseName { get; set; }
+        public string EnglishName { get; set; }
+        public string PreviousChineseName { get; set; }
+        public string PreviousEnglishName { get; set; }
+        public string AliasEnglish { get; set; }
+        public string AliasChinese { get; set; }
+        public string AddressLine1 {  get; set; }
+        public string AddressLine2 { get; set; }
+        public string AddressLine32 { get; set; }
+        public string EmailAddress { get; set; }
+
+    }
+
+
 
     public class MainIndAppt
     {
