@@ -160,6 +160,38 @@ namespace TestTornado.Forms.HK23NAR1
                                     CompanyAddressLine2 = "Suite 200",
                                     CompanyAddressLine3 = "Creativity Town",
                                     CompanyAddressLine4 = "SolutionState 02222"
+                                },
+                                  new CompanyRecord
+                                {
+                                    CompanyName = "Tech 2 The Rest Innovations Ltd.",
+                                    CompanyAddressLine1 = "123 Tech Road",
+                                    CompanyAddressLine2 = "Tech Park",
+                                    CompanyAddressLine3 = "Innovation City",
+                                    CompanyAddressLine4 = "TechState 01011"
+                                },
+                                new CompanyRecord
+                                {
+                                    CompanyName = "Creative 2 The Rest Solutions Inc.",
+                                    CompanyAddressLine1 = "456 Creative Ave",
+                                    CompanyAddressLine2 = "Suite 200",
+                                    CompanyAddressLine3 = "Creativity Town",
+                                    CompanyAddressLine4 = "SolutionState 02222"
+                                },
+                                  new CompanyRecord
+                                {
+                                    CompanyName = "Tech 3 The Rest Innovations Ltd.",
+                                    CompanyAddressLine1 = "123 Tech Road",
+                                    CompanyAddressLine2 = "Tech Park",
+                                    CompanyAddressLine3 = "Innovation City",
+                                    CompanyAddressLine4 = "TechState 01011"
+                                },
+                                new CompanyRecord
+                                {
+                                    CompanyName = "Creative 3 The Rest Solutions Inc.",
+                                    CompanyAddressLine1 = "456 Creative Ave",
+                                    CompanyAddressLine2 = "Suite 200",
+                                    CompanyAddressLine3 = "Creativity Town",
+                                    CompanyAddressLine4 = "SolutionState 02222"
                                 }
                             }
 
