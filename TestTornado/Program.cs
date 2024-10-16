@@ -122,8 +122,6 @@ namespace TestTornado
             {
                 await content.CopyToAsync(fileStream);
             }
-
-            Console.WriteLine($"Created file: {outputFilePath}");
             OpenDocxFile(outputFilePath);
         }
 
