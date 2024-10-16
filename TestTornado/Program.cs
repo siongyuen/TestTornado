@@ -22,39 +22,44 @@ namespace TestTornado
         private const string OUTPUT_FILE = "Output." + OUTPUT_FORMAT;
 
         static async Task Main(string[] args)
-        {        
+        {
+          
                 Console.WriteLine("Type \n" +
-                                "'0' for Repeating \n" +
-                                "'1' for GI19FDMSO1 \n" +
-                                "'2' for GNIR24AP01 \n" +
-                                "'3' for EAW18AR01 \n" +
-                                "'4' for HK23NAR1 ");
+                                  "'0' for Repeating \n" +
+                                  "'1' for GI19FDMSO1 \n" +
+                                  "'2' for GNIR24AP01 \n" +
+                                  "'3' for EAW18AR01 \n" +
+                                  "'4' for HK23NAR1 ");
                 string type = Console.ReadLine();
+            do
+            {
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
-            try
-            {
-                var responseStream = await SendRequestAsync(type);
-                if (responseStream != null)
+                try
                 {
-                    await SaveToFileAsync(responseStream, OUTPUT_FILE);
+                    var responseStream = await SendRequestAsync(type);
+                    if (responseStream != null)
+                    {
+                        await SaveToFileAsync(responseStream, OUTPUT_FILE); 
+                    }
                 }
-            }
-            catch (HttpRequestException e)
-            {
-                Console.WriteLine($"ERROR: {e.Message}");
-            }
-            catch (Exception e)
-            {
-                Console.Error.WriteLine("Unable to connect to Docmosis: " + e.Message);
-                Console.Error.WriteLine(e.StackTrace);
-                Console.Error.WriteLine("If you have a proxy, configure proxy settings at the top of this example.");
-            }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine($"ERROR: {e.Message}");
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine("Unable to connect to Docmosis: " + e.Message);
+                    Console.Error.WriteLine(e.StackTrace);
+                    Console.Error.WriteLine("If you have a proxy, configure proxy settings at the top of this example.");
+                }
+        
+                Console.Out.WriteLine($"Time Used milliseconds: {stopwatch.ElapsedMilliseconds}");
+                type = Console.ReadLine();
 
-            Console.Out.WriteLine($"Time Used milliseconds: {stopwatch.ElapsedMilliseconds}");
-            Console.Out.WriteLine("Press any key");
-            Console.ReadKey();
+            } while (true);
         }
+
 
         /// Sends the request to the server and returns the response stream.
         private static async Task<Stream> SendRequestAsync(string type)
