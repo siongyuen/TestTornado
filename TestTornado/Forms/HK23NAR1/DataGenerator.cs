@@ -47,34 +47,9 @@ namespace TestTornado.Forms.HK23NAR1
                         AddressLine3 = "Kuala Lumpur",
                         EmailAddress = "evelynlee@example.com"
                     },
-                    Secretaries = new List<Secretary>
+                    IndividualSecretaries = new List<Secretary>
                     {
-                        new Secretary {
-                            SecretaryType = "Corporate",
-                            ChineseName = "李婉容",
-                            EnglishName = "Evelyn Lee",
-                            PreviousChineseName = "李静婷",
-                            PreviousEnglishName = "Janet Lee",
-                            AliasEnglish = "Evie",
-                            AliasChinese = "婉儿",
-                            AddressLine1 = "12 Jalan Bukit Bintang",
-                            AddressLine2 = "Suite 1200",
-                            AddressLine3 = "Kuala Lumpur",
-                            EmailAddress = "evelynlee@example.com"
-                        },
-                        new Secretary {
-                            SecretaryType = "Corporate",
-                            ChineseName = "王美丽",
-                            EnglishName = "Melissa Wang",
-                            PreviousChineseName = "王丽",
-                            PreviousEnglishName = "Lily Wang",
-                            AliasEnglish = "Mel",
-                            AliasChinese = "美美",
-                            AddressLine1 = "88 Desa Parkcity",
-                            AddressLine2 = "Block B",
-                            AddressLine3 = "Kuala Lumpur",
-                            EmailAddress = "melissaw@example.com"
-                        },
+                     
                         new Secretary {
                             SecretaryType = "Individual",
                             ChineseName = "张小芳",
@@ -113,7 +88,36 @@ namespace TestTornado.Forms.HK23NAR1
                             AddressLine2 = "Villa 33",
                             AddressLine3 = "Kuala Lumpur",
                             EmailAddress = "davidc@example.com"
+                        } },
+                            CorporateSecretaries = new List<Secretary>
+                    {
+                        new Secretary {
+                            SecretaryType = "Corporate",
+                            ChineseName = "李婉容",
+                            EnglishName = "Evelyn Lee",
+                            PreviousChineseName = "李静婷",
+                            PreviousEnglishName = "Janet Lee",
+                            AliasEnglish = "Evie",
+                            AliasChinese = "婉儿",
+                            AddressLine1 = "12 Jalan Bukit Bintang",
+                            AddressLine2 = "Suite 1200",
+                            AddressLine3 = "Kuala Lumpur",
+                            EmailAddress = "evelynlee@example.com"
+                        },
+                        new Secretary {
+                            SecretaryType = "Corporate",
+                            ChineseName = "王美丽",
+                            EnglishName = "Melissa Wang",
+                            PreviousChineseName = "王丽",
+                            PreviousEnglishName = "Lily Wang",
+                            AliasEnglish = "Mel",
+                            AliasChinese = "美美",
+                            AddressLine1 = "88 Desa Parkcity",
+                            AddressLine2 = "Block B",
+                            AddressLine3 = "Kuala Lumpur",
+                            EmailAddress = "melissaw@example.com"
                         }
+                     ,
                     }
                 },
                 Building = new Building
