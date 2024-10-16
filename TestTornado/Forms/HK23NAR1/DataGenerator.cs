@@ -32,7 +32,75 @@ namespace TestTornado.Forms.HK23NAR1
                         }
                     },
                     Email = "contact@techinnovations.com",
-                    PhoneNo = "+1-800-123-4567"
+                    PhoneNo = "+1-800-123-4567",
+                    Secretaries = new List<Secretary>
+                    {
+                        new Secretary {
+                            SecretaryType = "Corporate",
+                            ChineseName = "李婉容",
+                            EnglishName = "Evelyn Lee",
+                            PreviousChineseName = "李静婷",
+                            PreviousEnglishName = "Janet Lee",
+                            AliasEnglish = "Evie",
+                            AliasChinese = "婉儿",
+                            AddressLine1 = "12 Jalan Bukit Bintang",
+                            AddressLine2 = "Suite 1200",
+                            AddressLine32 = "Kuala Lumpur",
+                            EmailAddress = "evelynlee@example.com"
+                        },
+            new Secretary {
+                SecretaryType = "Corporate",
+                ChineseName = "王美丽",
+                EnglishName = "Melissa Wang",
+                PreviousChineseName = "王丽",
+                PreviousEnglishName = "Lily Wang",
+                AliasEnglish = "Mel",
+                AliasChinese = "美美",
+                AddressLine1 = "88 Desa Parkcity",
+                AddressLine2 = "Block B",
+                AddressLine32 = "Kuala Lumpur",
+                EmailAddress = "melissaw@example.com"
+            },
+            new Secretary {
+                SecretaryType = "Individual",
+                ChineseName = "张小芳",
+                EnglishName = "Sophia Zhang",
+                PreviousChineseName = "张芳",
+                PreviousEnglishName = "Fanny Zhang",
+                AliasEnglish = "Soph",
+                AliasChinese = "小芳",
+                AddressLine1 = "5 Persiaran Residen",
+                AddressLine2 = "Unit 5",
+                AddressLine32 = "Desa Parkcity",
+                EmailAddress = "sophiaz@example.com"
+            },
+            new Secretary {
+                SecretaryType = "Individual",
+                ChineseName = "林瑞君",
+                EnglishName = "Rachel Lim",
+                PreviousChineseName = "林君",
+                PreviousEnglishName = "June Lim",
+                AliasEnglish = "Rach",
+                AliasChinese = "瑞儿",
+                AddressLine1 = "22 Mont Kiara",
+                AddressLine2 = "Apartment 2204",
+                AddressLine32 = "Mont Kiara",
+                EmailAddress = "rachell@example.com"
+            },
+            new Secretary {
+                SecretaryType = "Individual",
+                ChineseName = "陈大为",
+                EnglishName = "David Chen",
+                PreviousChineseName = "陈伟",
+                PreviousEnglishName = "Wei Chen",
+                AliasEnglish = "Dave",
+                AliasChinese = "大伟",
+                AddressLine1 = "33 Taman Tun Dr Ismail",
+                AddressLine2 = "Villa 33",
+                AddressLine32 = "Kuala Lumpur",
+                EmailAddress = "davidc@example.com"
+            }
+                    }
                 },
                 Building = new Building
                 {
