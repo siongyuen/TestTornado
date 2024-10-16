@@ -82,49 +82,34 @@ namespace TestTornado
         }
 
         /// Build the request in JSON format.
-        private static string BuildRequest(string type )
+        private static string BuildRequest(string type)
         {
-            object? myData=null;
-            string template=string.Empty;
-            if (type == "0")
-            {
-                myData = Forms.Repeating.DataGenerator.GetData();
-                template = "samples/RepeatingTemplate.docx";
-            }
-            else if (type == "1")
-            {
-                myData = TestTornado.Forms.GI19FDMS01.DataGenerator.GetData();
-                template = "samples/GI19FDMS01.DOCX";
-            }
-            else if (type == "2")
-            {
-                myData = TestTornado.Forms.GNIR24AP01.DataGenerator.GetData();
-                template = "samples/GNIR24AP01.DOCX";
-            }
-            else if (type == "3")
-            {
-                myData = TestTornado.Forms.EAW18AR01.DataGenerator.GetData();
-                template = "samples/EAW18AR01.docx";
-            }
-            else if (type == "4")
-            {
-                myData = TestTornado.Forms.HK23NAR1.DataGenerator.GetData();
-                template = "samples/HK23NAR1.docx";
-            }
+            var dataTemplateMap = new Dictionary<string, (object? data, string template)>
+                {
+                    { "0", (Forms.Repeating.DataGenerator.GetData(), "samples/RepeatingTemplate.docx") },
+                    { "1", (TestTornado.Forms.GI19FDMS01.DataGenerator.GetData(), "samples/GI19FDMS01.DOCX") },
+                    { "2", (TestTornado.Forms.GNIR24AP01.DataGenerator.GetData(), "samples/GNIR24AP01.DOCX") },
+                    { "3", (TestTornado.Forms.EAW18AR01.DataGenerator.GetData(), "samples/EAW18AR01.docx") },
+                    { "4", (TestTornado.Forms.HK23NAR1.DataGenerator.GetData(), "samples/HK23NAR1.docx") }
+                };
 
-
+            if (!dataTemplateMap.TryGetValue(type, out var myDataTemplate))
+            {
+                throw new ArgumentException("Invalid type specified");
+            }
 
             var requestObject = new
             {
                 accessKey = ACCESS_KEY,
-                templateName = template,
+                templateName = myDataTemplate.template,
                 outputName = OUTPUT_FILE,
                 outputFormat = OUTPUT_FORMAT,
-                data = myData
+                data = myDataTemplate.data
             };
 
             return JsonSerializer.Serialize(requestObject, new JsonSerializerOptions { WriteIndented = true });
         }
+
 
         private static async Task SaveToFileAsync(Stream content, string outputFilePath)
         {
