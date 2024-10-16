@@ -33,6 +33,20 @@ namespace TestTornado.Forms.HK23NAR1
                     },
                     Email = "contact@techinnovations.com",
                     PhoneNo = "+1-800-123-4567",
+                    FirstSecretary = new Secretary
+                    {
+                        SecretaryType = "Corporate",
+                        ChineseName = "李婉",
+                        EnglishName = "Emily Lee",
+                        PreviousChineseName = "李静",
+                        PreviousEnglishName = "Ember Lee",
+                        AliasEnglish = "Emy",
+                        AliasChinese = "婉儿",
+                        AddressLine1 = "172 Jalan Bukit Bintang",
+                        AddressLine2 = "Suite 1200",
+                        AddressLine3 = "Kuala Lumpur",
+                        EmailAddress = "evelynlee@example.com"
+                    },
                     Secretaries = new List<Secretary>
                     {
                         new Secretary {
@@ -45,7 +59,7 @@ namespace TestTornado.Forms.HK23NAR1
                             AliasChinese = "婉儿",
                             AddressLine1 = "12 Jalan Bukit Bintang",
                             AddressLine2 = "Suite 1200",
-                            AddressLine32 = "Kuala Lumpur",
+                            AddressLine3 = "Kuala Lumpur",
                             EmailAddress = "evelynlee@example.com"
                         },
                         new Secretary {
@@ -58,7 +72,7 @@ namespace TestTornado.Forms.HK23NAR1
                             AliasChinese = "美美",
                             AddressLine1 = "88 Desa Parkcity",
                             AddressLine2 = "Block B",
-                            AddressLine32 = "Kuala Lumpur",
+                            AddressLine3 = "Kuala Lumpur",
                             EmailAddress = "melissaw@example.com"
                         },
                         new Secretary {
@@ -71,7 +85,7 @@ namespace TestTornado.Forms.HK23NAR1
                             AliasChinese = "小芳",
                             AddressLine1 = "5 Persiaran Residen",
                             AddressLine2 = "Unit 5",
-                            AddressLine32 = "Desa Parkcity",
+                            AddressLine3 = "Desa Parkcity",
                             EmailAddress = "sophiaz@example.com"
                         },
                         new Secretary {
@@ -84,7 +98,7 @@ namespace TestTornado.Forms.HK23NAR1
                             AliasChinese = "瑞儿",
                             AddressLine1 = "22 Mont Kiara",
                             AddressLine2 = "Apartment 2204",
-                            AddressLine32 = "Mont Kiara",
+                            AddressLine3 = "Mont Kiara",
                             EmailAddress = "rachell@example.com"
                         },
                         new Secretary {
@@ -97,7 +111,7 @@ namespace TestTornado.Forms.HK23NAR1
                             AliasChinese = "大伟",
                             AddressLine1 = "33 Taman Tun Dr Ismail",
                             AddressLine2 = "Villa 33",
-                            AddressLine32 = "Kuala Lumpur",
+                            AddressLine3 = "Kuala Lumpur",
                             EmailAddress = "davidc@example.com"
                         }
                     }

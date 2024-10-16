@@ -18,6 +18,7 @@ namespace TestTornado.Forms.HK23NAR1
         public MainIndAppt MAININDAPPT { get; set; }
         public string Email { get; set; }
         public string PhoneNo { get; set; }
+        public Secretary FirstSecretary { get; set; }
         public List<Secretary> Secretaries { get; set; }
     }
 
@@ -32,7 +33,7 @@ namespace TestTornado.Forms.HK23NAR1
         public string AliasChinese { get; set; }
         public string AddressLine1 {  get; set; }
         public string AddressLine2 { get; set; }
-        public string AddressLine32 { get; set; }
+        public string AddressLine3 { get; set; }
         public string EmailAddress { get; set; }
 
     }
