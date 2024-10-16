@@ -124,6 +124,44 @@ namespace TestTornado.Forms.HK23NAR1
                             ParticularMember1 ="Y",
                             ParticularMember2 ="N",
                             ParticularMember3 ="Y",
+                    FirstTwoCompanyRecords = new List<CompanyRecord>
+                            {                                
+                                new CompanyRecord
+                                {
+                                    CompanyName = "Tech Innovations Ltd.",
+                                    CompanyAddressLine1 = "123 Tech Road",
+                                    CompanyAddressLine2 = "Tech Park",
+                                    CompanyAddressLine3 = "Innovation City",
+                                    CompanyAddressLine4 = "TechState 01011"
+                                },                             
+                                new CompanyRecord
+                                {
+                                    CompanyName = "Creative Solutions Inc.",
+                                    CompanyAddressLine1 = "456 Creative Ave",
+                                    CompanyAddressLine2 = "Suite 200",
+                                    CompanyAddressLine3 = "Creativity Town",
+                                    CompanyAddressLine4 = "SolutionState 02222"
+                                }
+                            },
+                    TheRestOfCompanyRecords = new List<CompanyRecord>
+                            {                                
+                                new CompanyRecord
+                                {
+                                    CompanyName = "Tech The Rest Innovations Ltd.",
+                                    CompanyAddressLine1 = "123 Tech Road",
+                                    CompanyAddressLine2 = "Tech Park",
+                                    CompanyAddressLine3 = "Innovation City",
+                                    CompanyAddressLine4 = "TechState 01011"
+                                },                                
+                                new CompanyRecord
+                                {
+                                    CompanyName = "Creative The Rest Solutions Inc.",
+                                    CompanyAddressLine1 = "456 Creative Ave",
+                                    CompanyAddressLine2 = "Suite 200",
+                                    CompanyAddressLine3 = "Creativity Town",
+                                    CompanyAddressLine4 = "SolutionState 02222"
+                                }
+                            }
 
                 },
                 Building = new Building

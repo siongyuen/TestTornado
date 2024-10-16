@@ -25,6 +25,8 @@ namespace TestTornado.Forms.HK23NAR1
         public string ParticularMember1 { get; set; }
         public string ParticularMember2 { get; set; }
         public string ParticularMember3 { get; set; }
+        public List<CompanyRecord> FirstTwoCompanyRecords { get; set; }
+        public List<CompanyRecord> TheRestOfCompanyRecords { get; set; }
     }
 
     public class Secretary
@@ -41,6 +43,15 @@ namespace TestTornado.Forms.HK23NAR1
         public string AddressLine3 { get; set; }
         public string EmailAddress { get; set; }
 
+    }
+
+    public class CompanyRecord
+    {
+        public string CompanyName { get; set; }
+        public string CompanyAddressLine1 { get; set; }
+        public string CompanyAddressLine2 { get; set; }
+        public string CompanyAddressLine3 { get; set; }
+        public string CompanyAddressLine4 { get; set; }
     }
 
 
