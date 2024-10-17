@@ -60,6 +60,7 @@ static async Task Main(string[] args)
                     await SaveToFileAsync(responseStream, $"{outputFile}.{outputFormat}");
                     Console.WriteLine($"File saved as {outputFile}");
                     Console.Out.WriteLine($"Time Used milliseconds: {stopwatch.ElapsedMilliseconds}");
+                    Console.Out.WriteLine($"Press any key to continue");
                     }
             }
             catch (HttpRequestException e)
