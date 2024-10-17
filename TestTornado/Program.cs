@@ -25,12 +25,15 @@ namespace TestTornado
 
 static async Task Main(string[] args)
     {
-        Console.WriteLine("Select the form type: \n" +
+            do
+            {
+                Console.WriteLine("Select the form type: \n" +
                           "'0' for Repeating \n" +
                           "'1' for GI19FDMSO1 \n" +
                           "'2' for GNIR24AP01 \n" +
                           "'3' for EAW18AR01 \n" +
-                          "'4' for HK23NAR1 ");
+                          "'4' for HK23NAR1 \n" +
+                          "'5' for prefilled pdf");
         string type = Console.ReadLine();
 
             Console.WriteLine("Select the output file format: \n" +
@@ -45,8 +48,7 @@ static async Task Main(string[] args)
             _ => "DOCX" // Default format
         };
 
-        do
-        {
+       
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             try
@@ -71,8 +73,7 @@ static async Task Main(string[] args)
                 Console.Error.WriteLine("If you have a proxy, configure proxy settings at the top of this example.");
             }       
 
-            // Prompt to continue or exit
-            Console.WriteLine("Press Enter to generate another document or type 'exit' to quit.");
+            // Prompt to continue or exit          
             type = Console.ReadLine();
             if (type.ToLower() == "exit")
             {
@@ -118,8 +119,8 @@ static async Task Main(string[] args)
                     { "1", (TestTornado.Forms.GI19FDMS01.DataGenerator.GetData(), "samples/GI19FDMS01.DOCX") },
                     { "2", (TestTornado.Forms.GNIR24AP01.DataGenerator.GetData(), "samples/GNIR24AP01.DOCX") },
                     { "3", (TestTornado.Forms.EAW18AR01.DataGenerator.GetData(), "samples/EAW18AR01.docx") },
-                    { "4", (TestTornado.Forms.HK23NAR1.DataGenerator.GetData(), "samples/HK23NAR1.docx") }
-                };
+                    { "4", (TestTornado.Forms.HK23NAR1.DataGenerator.GetData(), "samples/HK23NAR1.docx") },
+                    { "5", (TestTornado.Forms.PrefilledPDF.DataGenerator.GetData(), "samples/pre-filled-pdf.odt") }};
 
             if (!dataTemplateMap.TryGetValue(type, out var myDataTemplate))
             {
