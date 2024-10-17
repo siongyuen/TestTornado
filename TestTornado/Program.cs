@@ -21,52 +21,75 @@ namespace TestTornado
         // The name of the file we are going to write the document to
         private const string OUTPUT_FILE = "Output." + OUTPUT_FORMAT;
 
-        static async Task Main(string[] args)
+
+
+static async Task Main(string[] args)
+    {
+        Console.WriteLine("Select the form type: \n" +
+                          "'0' for Repeating \n" +
+                          "'1' for GI19FDMSO1 \n" +
+                          "'2' for GNIR24AP01 \n" +
+                          "'3' for EAW18AR01 \n" +
+                          "'4' for HK23NAR1 ");
+        string type = Console.ReadLine();
+
+            Console.WriteLine("Select the output file format: \n" +
+                              "'1' for PDF \n" +
+                              "'2' for DOCX");
+                          
+        string formatChoice = Console.ReadLine();
+        string outputFormat = formatChoice switch
         {
-          
-                Console.WriteLine("Type \n" +
-                                  "'0' for Repeating \n" +
-                                  "'1' for GI19FDMSO1 \n" +
-                                  "'2' for GNIR24AP01 \n" +
-                                  "'3' for EAW18AR01 \n" +
-                                  "'4' for HK23NAR1 ");
-                string type = Console.ReadLine();
-            do
+            "1" => "PDF",
+            "2" => "DOCX",    
+            _ => "DOCX" // Default format
+        };
+
+        do
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            try
             {
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
-                try
-                {
-                    var responseStream = await SendRequestAsync(type);
-                    if (responseStream != null)
-                    {
-                        await SaveToFileAsync(responseStream, OUTPUT_FILE); 
+                    string outputFile = $"output_{DateTime.Now:yyyyMMddHHmmss}";
+                    var responseStream = await SendRequestAsync(type, outputFile, outputFormat);
+                if (responseStream != null)
+                {                   
+                    await SaveToFileAsync(responseStream, $"{outputFile}.{outputFormat}");
+                    Console.WriteLine($"File saved as {outputFile}");
+                    Console.Out.WriteLine($"Time Used milliseconds: {stopwatch.ElapsedMilliseconds}");
                     }
-                }
-                catch (HttpRequestException e)
-                {
-                    Console.WriteLine($"ERROR: {e.Message}");
-                }
-                catch (Exception e)
-                {
-                    Console.Error.WriteLine("Unable to connect to Docmosis: " + e.Message);
-                    Console.Error.WriteLine(e.StackTrace);
-                    Console.Error.WriteLine("If you have a proxy, configure proxy settings at the top of this example.");
-                }
-        
-                Console.Out.WriteLine($"Time Used milliseconds: {stopwatch.ElapsedMilliseconds}");
-                type = Console.ReadLine();
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine($"ERROR: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine("Unable to connect to Docmosis: " + e.Message);
+                Console.Error.WriteLine(e.StackTrace);
+                Console.Error.WriteLine("If you have a proxy, configure proxy settings at the top of this example.");
+            }       
 
-            } while (true);
-        }
+            // Prompt to continue or exit
+            Console.WriteLine("Press Enter to generate another document or type 'exit' to quit.");
+            type = Console.ReadLine();
+            if (type.ToLower() == "exit")
+            {
+                break; // Exit the loop and end the program
+            }
+
+        } while (true);
+    }
 
 
-        /// Sends the request to the server and returns the response stream.
-        private static async Task<Stream> SendRequestAsync(string type)
+
+    /// Sends the request to the server and returns the response stream.
+    private static async Task<Stream> SendRequestAsync(string type, string outputFile, string outputFormat )
         {
             using (HttpClient client = new HttpClient())
             {
-                string renderRequest = BuildRequest(type);
+                string renderRequest = BuildRequest(type, outputFile, outputFormat);
 
                 // Prepare the request content
                 StringContent content = new StringContent(renderRequest, Encoding.UTF8, "application/json");
@@ -87,7 +110,7 @@ namespace TestTornado
         }
 
         /// Build the request in JSON format.
-        private static string BuildRequest(string type)
+        private static string BuildRequest(string type, string outputFile, string outputFormat)
         {
             var dataTemplateMap = new Dictionary<string, (object? data, string template)>
                 {
@@ -107,8 +130,8 @@ namespace TestTornado
             {
                 accessKey = ACCESS_KEY,
                 templateName = myDataTemplate.template,
-                outputName = OUTPUT_FILE,
-                outputFormat = OUTPUT_FORMAT,
+                outputName = outputFile,
+                outputFormat = outputFormat,
                 data = myDataTemplate.data
             };
 
