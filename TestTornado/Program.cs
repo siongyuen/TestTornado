@@ -34,7 +34,7 @@ static async Task Main(string[] args)
                           "'3' for EAW18AR01 \n" +
                           "'4' for HK23NAR1 \n" +
                           "'5' for prefilled pdf");
-        string type = Console.ReadLine();
+        string templateSelection = Console.ReadLine();
 
             Console.WriteLine("Select the output file format: \n" +
                               "'1' for PDF \n" +
@@ -54,7 +54,7 @@ static async Task Main(string[] args)
             try
             {
                     string outputFile = $"output_{DateTime.Now:yyyyMMddHHmmss}";
-                    var responseStream = await SendRequestAsync(type, outputFile, outputFormat);
+                    var responseStream = await SendRequestAsync(templateSelection, outputFile, outputFormat);
                 if (responseStream != null)
                 {                   
                     await SaveToFileAsync(responseStream, $"{outputFile}.{outputFormat}");
@@ -75,8 +75,8 @@ static async Task Main(string[] args)
             }       
 
             // Prompt to continue or exit          
-            type = Console.ReadLine();
-            if (type.ToLower() == "exit")
+            templateSelection = Console.ReadLine();
+            if (templateSelection.ToLower() == "exit")
             {
                 break; // Exit the loop and end the program
             }
@@ -87,11 +87,11 @@ static async Task Main(string[] args)
 
 
     /// Sends the request to the server and returns the response stream.
-    private static async Task<Stream> SendRequestAsync(string type, string outputFile, string outputFormat )
+    private static async Task<Stream> SendRequestAsync(string templateSelection, string outputFile, string outputFormat )
         {
             using (HttpClient client = new HttpClient())
             {
-                string renderRequest = BuildRequest(type, outputFile, outputFormat);
+                string renderRequest = BuildRequest(templateSelection, outputFile, outputFormat);
 
                 // Prepare the request content
                 StringContent content = new StringContent(renderRequest, Encoding.UTF8, "application/json");
@@ -112,11 +112,11 @@ static async Task Main(string[] args)
         }
 
         /// Build the request in JSON format.
-        private static string BuildRequest(string type, string outputFile, string outputFormat)
+        private static string BuildRequest(string templateSelection, string outputFile, string outputFormat)
         {
             Dictionary<string, Func<(object? data, string template)>> templateDataMapping = MapTemplateGenerator();
 
-            if (!templateDataMapping.TryGetValue(type, out var dataTemplateFunc))
+            if (!templateDataMapping.TryGetValue(templateSelection, out var dataTemplateFunc))
             {
                 throw new ArgumentException("Invalid type specified");
             }
