@@ -114,19 +114,15 @@ static async Task Main(string[] args)
         /// Build the request in JSON format.
         private static string BuildRequest(string type, string outputFile, string outputFormat)
         {
-            var dataTemplateMap = new Dictionary<string, (object? data, string template)>
-                {
-                    { "0", (Forms.Repeating.DataGenerator.GetData(), "samples/RepeatingTemplate.docx") },
-                    { "1", (TestTornado.Forms.GI19FDMS01.DataGenerator.GetData(), "samples/GI19FDMS01.DOCX") },
-                    { "2", (TestTornado.Forms.GNIR24AP01.DataGenerator.GetData(), "samples/GNIR24AP01.DOCX") },
-                    { "3", (TestTornado.Forms.EAW18AR01.DataGenerator.GetData(), "samples/EAW18AR01.docx") },
-                    { "4", (TestTornado.Forms.HK23NAR1.DataGenerator.GetData(), "samples/HK23NAR1.docx") },
-                    { "5", (TestTornado.Forms.PrefilledPDF.DataGenerator.GetData(), "samples/pre-filled-pdf.odt") }};
+            Dictionary<string, Func<(object? data, string template)>> templateDataMapping = MapTemplateGenerator();
 
-            if (!dataTemplateMap.TryGetValue(type, out var myDataTemplate))
+            if (!templateDataMapping.TryGetValue(type, out var dataTemplateFunc))
             {
                 throw new ArgumentException("Invalid type specified");
             }
+
+            // Execute the Func to get the data and template only if the type is valid
+            var myDataTemplate = dataTemplateFunc.Invoke();
 
             var requestObject = new
             {
@@ -140,6 +136,18 @@ static async Task Main(string[] args)
             return JsonSerializer.Serialize(requestObject, new JsonSerializerOptions { WriteIndented = true });
         }
 
+        private static Dictionary<string, Func<(object? data, string template)>> MapTemplateGenerator()
+        {
+            return new Dictionary<string, Func<(object? data, string template)>>
+            {
+        { "0", () => (Forms.Repeating.DataGenerator.GetData(), "samples/RepeatingTemplate.docx") },
+        { "1", () => (TestTornado.Forms.GI19FDMS01.DataGenerator.GetData(), "samples/GI19FDMS01.DOCX") },
+        { "2", () => (TestTornado.Forms.GNIR24AP01.DataGenerator.GetData(), "samples/GNIR24AP01.DOCX") },
+        { "3", () => (TestTornado.Forms.EAW18AR01.DataGenerator.GetData(), "samples/EAW18AR01.docx") },
+        { "4", () => (TestTornado.Forms.HK23NAR1.DataGenerator.GetData(), "samples/HK23NAR1.docx") },
+        { "5", () => (TestTornado.Forms.PrefilledPDF.DataGenerator.GetData(), "samples/pre-filled-pdf.odt") }
+            };
+        }
 
         private static async Task SaveToFileAsync(Stream content, string outputFilePath)
         {
