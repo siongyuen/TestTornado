@@ -51,7 +51,7 @@ namespace TestTornado.Forms.HK23NAR1
                     ,
                     IndividualSecretaries = new List<Secretary>
                     {
-                     
+
                         new Secretary {
                             SecretaryType = "Individual",
                             ChineseName = "张小芳",
@@ -91,7 +91,7 @@ namespace TestTornado.Forms.HK23NAR1
                             AddressLine3 = "Kuala Lumpur",
                             EmailAddress = "davidc@example.com"
                         } },
-                            CorporateSecretaries = new List<Secretary>
+                    CorporateSecretaries = new List<Secretary>
                     {
                         new Secretary {
                             SecretaryType = "Corporate",
@@ -121,79 +121,30 @@ namespace TestTornado.Forms.HK23NAR1
                         }
                      ,
                     },
-                            ParticularMember1 ="Y",
-                            ParticularMember2 ="N",
-                            ParticularMember3 ="Y",
+                    ParticularMember1 = "Y",
+                    ParticularMember2 = "N",
+                    ParticularMember3 = "Y",
                     FirstTwoCompanyRecords = new List<CompanyRecord>
-                            {                                
-                                new CompanyRecord
-                                {
-                                    CompanyName = "Tech Innovations Ltd.",
-                                    CompanyAddressLine1 = "123 Tech Road",
-                                    CompanyAddressLine2 = "Tech Park",
-                                    CompanyAddressLine3 = "Innovation City",
-                                    CompanyAddressLine4 = "TechState 01011"
-                                },                             
-                                new CompanyRecord
-                                {
-                                    CompanyName = "Creative Solutions Inc.",
-                                    CompanyAddressLine1 = "456 Creative Ave",
-                                    CompanyAddressLine2 = "Suite 200",
-                                    CompanyAddressLine3 = "Creativity Town",
-                                    CompanyAddressLine4 = "SolutionState 02222"
-                                }
-                            },
-                    TheRestOfCompanyRecords = new List<CompanyRecord>
-                            {                                
-                                new CompanyRecord
-                                {
-                                    CompanyName = "Tech The Rest Innovations Ltd.",
-                                    CompanyAddressLine1 = "123 Tech Road",
-                                    CompanyAddressLine2 = "Tech Park",
-                                    CompanyAddressLine3 = "Innovation City",
-                                    CompanyAddressLine4 = "TechState 01011"
-                                },                                
-                                new CompanyRecord
-                                {
-                                    CompanyName = "Creative The Rest Solutions Inc.",
-                                    CompanyAddressLine1 = "456 Creative Ave",
-                                    CompanyAddressLine2 = "Suite 200",
-                                    CompanyAddressLine3 = "Creativity Town",
-                                    CompanyAddressLine4 = "SolutionState 02222"
-                                },
-                                  new CompanyRecord
-                                {
-                                    CompanyName = "Tech 2 The Rest Innovations Ltd.",
-                                    CompanyAddressLine1 = "123 Tech Road",
-                                    CompanyAddressLine2 = "Tech Park",
-                                    CompanyAddressLine3 = "Innovation City",
-                                    CompanyAddressLine4 = "TechState 01011"
-                                },
-                                new CompanyRecord
-                                {
-                                    CompanyName = "Creative 2 The Rest Solutions Inc.",
-                                    CompanyAddressLine1 = "456 Creative Ave",
-                                    CompanyAddressLine2 = "Suite 200",
-                                    CompanyAddressLine3 = "Creativity Town",
-                                    CompanyAddressLine4 = "SolutionState 02222"
-                                },
-                                  new CompanyRecord
-                                {
-                                    CompanyName = "Tech 3 The Rest Innovations Ltd.",
-                                    CompanyAddressLine1 = "123 Tech Road",
-                                    CompanyAddressLine2 = "Tech Park",
-                                    CompanyAddressLine3 = "Innovation City",
-                                    CompanyAddressLine4 = "TechState 01011"
-                                },
-                                new CompanyRecord
-                                {
-                                    CompanyName = "Creative 3 The Rest Solutions Inc.",
-                                    CompanyAddressLine1 = "456 Creative Ave",
-                                    CompanyAddressLine2 = "Suite 200",
-                                    CompanyAddressLine3 = "Creativity Town",
-                                    CompanyAddressLine4 = "SolutionState 02222"
-                                }
-                            }
+                    {
+                        new CompanyRecord
+                        {
+                            CompanyName = "Tech Innovations Ltd.",
+                            CompanyAddressLine1 = "123 Tech Road",
+                            CompanyAddressLine2 = "Tech Park",
+                            CompanyAddressLine3 = "Innovation City",
+                            CompanyAddressLine4 = "TechState 01011"
+                        },
+                        new CompanyRecord
+                        {
+                            CompanyName = "Creative Solutions Inc.",
+                            CompanyAddressLine1 = "456 Creative Ave",
+                            CompanyAddressLine2 = "Suite 200",
+                            CompanyAddressLine3 = "Creativity Town",
+                            CompanyAddressLine4 = "SolutionState 02222"
+                        }
+                    },
+
+
 
                 },
                 Building = new Building
@@ -210,35 +161,113 @@ namespace TestTornado.Forms.HK23NAR1
                     UserCodeFormQueueNumber = "GV1001"
                 },
                 Shares = new List<Share>
-            {
-                new Share
                 {
-                    ClassOfShare = "Common Stock",
-                    Currency = "USD",
-                    TotalNumber = "1000000",
-                    TotalAmount = "1000000",
-                    TotalPaidUp = "750000"
+                    new Share
+                    {
+                        ClassOfShare = "Common Stock",
+                        Currency = "USD",
+                        TotalNumber = "1000000",
+                        TotalAmount = "1000000",
+                        TotalPaidUp = "750000"
+                    },
+                    new Share
+                    {
+                        ClassOfShare = "Preferred Stock",
+                        Currency = "USD",
+                        TotalNumber = "500000",
+                        TotalAmount = "500000",
+                        TotalPaidUp = "500000"
+                    },
+                    new Share
+                    {
+                        ClassOfShare = "Employee Stock Options",
+                        Currency = "USD",
+                        TotalNumber = "200000",
+                        TotalAmount = "200000",
+                        TotalPaidUp = "150000"
+                    }
                 },
-                new Share
-                {
-                    ClassOfShare = "Preferred Stock",
-                    Currency = "USD",
-                    TotalNumber = "500000",
-                    TotalAmount = "500000",
-                    TotalPaidUp = "500000"
-                },
-                new Share
-                {
-                    ClassOfShare = "Employee Stock Options",
-                    Currency = "USD",
-                    TotalNumber = "200000",
-                    TotalAmount = "200000",
-                    TotalPaidUp = "150000"
-                }
-            },
                 FullName = "John Wong",
-                AnnualReturnDate = "2018-01-10T06:14:00Z"
+                AnnualReturnDate = "2018-01-10T06:14:00Z",
+                Pages = new List<Page>
+                            { new Page
+                                    { CLIENT = new Client {
+                                        TheRestOfCompanyRecords = new List<CompanyRecord>
+                                        {
+                                            new CompanyRecord
+                                            {
+                                                CompanyName = "Tech Innovations Ltd.",
+                                                CompanyAddressLine1 = "123 Tech Road",
+                                                CompanyAddressLine2 = "Tech Park",
+                                                CompanyAddressLine3 = "Innovation City",
+                                                CompanyAddressLine4 = "TechState 01011"
+                                            },
+                                            new CompanyRecord
+                                            {
+                                                CompanyName = "Creative Solutions Inc.",
+                                                CompanyAddressLine1 = "456 Creative Ave",
+                                                CompanyAddressLine2 = "Suite 200",
+                                                CompanyAddressLine3 = "Creativity Town",
+                                                CompanyAddressLine4 = "SolutionState 02222"
+                                            },
+                                                new CompanyRecord
+                                            {
+                                                CompanyName = "Tech Innovations Ltd.",
+                                                CompanyAddressLine1 = "123 Tech Road",
+                                                CompanyAddressLine2 = "Tech Park",
+                                                CompanyAddressLine3 = "Innovation City",
+                                                CompanyAddressLine4 = "TechState 01011"
+                                            }
+                                        }
+
+
+                                    }
+
+
+                            },
+                            { new Page
+                                    { CLIENT = new Client {
+                                        TheRestOfCompanyRecords = new List<CompanyRecord>
+                                        {
+                                            new CompanyRecord
+                                            {
+                                                CompanyName = "Tech Innovations Ltd.",
+                                                CompanyAddressLine1 = "123 Tech Road",
+                                                CompanyAddressLine2 = "Tech Park",
+                                                CompanyAddressLine3 = "Innovation City",
+                                                CompanyAddressLine4 = "TechState 01011"
+                                            },
+                                            new CompanyRecord
+                                            {
+                                                CompanyName = "Creative Solutions Inc.",
+                                                CompanyAddressLine1 = "456 Creative Ave",
+                                                CompanyAddressLine2 = "Suite 200",
+                                                CompanyAddressLine3 = "Creativity Town",
+                                                CompanyAddressLine4 = "SolutionState 02222"
+                                            },
+                                                new CompanyRecord
+                                            {
+                                                CompanyName = "Tech Innovations Ltd.",
+                                                CompanyAddressLine1 = "123 Tech Road",
+                                                CompanyAddressLine2 = "Tech Park",
+                                                CompanyAddressLine3 = "Innovation City",
+                                                CompanyAddressLine4 = "TechState 01011"
+                                            }
+                                            
+                                        }
+
+
+                                    }
+
+
+                            }
+
+                    }
+                }
             };
         }
-    }
+    } 
 }
+        
+    
+

@@ -107,6 +107,11 @@ namespace TestTornado.Forms.HK23NAR1
         public string FullName { get; set; }
 
         public string AnnualReturnDate { get; set; }
+        public List<Page> Pages { get; set; }
     }
 
+    public class Page
+    {
+        public Client CLIENT { get; set; }
+    }
 }
