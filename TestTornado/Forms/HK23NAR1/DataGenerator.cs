@@ -196,7 +196,7 @@ namespace TestTornado.Forms.HK23NAR1
                                         {
                                             new CompanyRecord
                                             {
-                                                CompanyName = "Tech Innovations Ltd.",
+                                                CompanyName = "Tech 1 Innovations Ltd.",
                                                 CompanyAddressLine1 = "123 Tech Road",
                                                 CompanyAddressLine2 = "Tech Park",
                                                 CompanyAddressLine3 = "Innovation City",
@@ -204,7 +204,7 @@ namespace TestTornado.Forms.HK23NAR1
                                             },
                                             new CompanyRecord
                                             {
-                                                CompanyName = "Creative Solutions Inc.",
+                                                CompanyName = "Creative 2 Solutions Inc.",
                                                 CompanyAddressLine1 = "456 Creative Ave",
                                                 CompanyAddressLine2 = "Suite 200",
                                                 CompanyAddressLine3 = "Creativity Town",
@@ -212,7 +212,7 @@ namespace TestTornado.Forms.HK23NAR1
                                             },
                                                 new CompanyRecord
                                             {
-                                                CompanyName = "Tech Innovations Ltd.",
+                                                CompanyName = "Tech 3 Innovations Ltd.",
                                                 CompanyAddressLine1 = "123 Tech Road",
                                                 CompanyAddressLine2 = "Tech Park",
                                                 CompanyAddressLine3 = "Innovation City",
@@ -231,7 +231,7 @@ namespace TestTornado.Forms.HK23NAR1
                                         {
                                             new CompanyRecord
                                             {
-                                                CompanyName = "Tech Innovations Ltd.",
+                                                CompanyName = "Tech 4 Innovations Ltd.",
                                                 CompanyAddressLine1 = "123 Tech Road",
                                                 CompanyAddressLine2 = "Tech Park",
                                                 CompanyAddressLine3 = "Innovation City",
@@ -239,7 +239,7 @@ namespace TestTornado.Forms.HK23NAR1
                                             },
                                             new CompanyRecord
                                             {
-                                                CompanyName = "Creative Solutions Inc.",
+                                                CompanyName = "Creative 5 Solutions Inc.",
                                                 CompanyAddressLine1 = "456 Creative Ave",
                                                 CompanyAddressLine2 = "Suite 200",
                                                 CompanyAddressLine3 = "Creativity Town",
@@ -247,7 +247,7 @@ namespace TestTornado.Forms.HK23NAR1
                                             },
                                                 new CompanyRecord
                                             {
-                                                CompanyName = "Tech Innovations Ltd.",
+                                                CompanyName = "Tech 6 Innovations Ltd.",
                                                 CompanyAddressLine1 = "123 Tech Road",
                                                 CompanyAddressLine2 = "Tech Park",
                                                 CompanyAddressLine3 = "Innovation City",
