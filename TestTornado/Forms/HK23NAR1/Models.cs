@@ -52,6 +52,7 @@ namespace TestTornado.Forms.HK23NAR1
         public string CompanyAddressLine2 { get; set; }
         public string CompanyAddressLine3 { get; set; }
         public string CompanyAddressLine4 { get; set; }
+        public string ContinuationSheetE {  get; set; }
     }
 
 

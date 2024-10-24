@@ -200,7 +200,8 @@ namespace TestTornado.Forms.HK23NAR1
                                                 CompanyAddressLine1 = "123 Tech Road",
                                                 CompanyAddressLine2 = "Tech Park",
                                                 CompanyAddressLine3 = "Innovation City",
-                                                CompanyAddressLine4 = "TechState 01011"
+                                                CompanyAddressLine4 = "TechState 01011",
+                                                ContinuationSheetE = "Y"
                                             },
                                             new CompanyRecord
                                             {
@@ -208,7 +209,8 @@ namespace TestTornado.Forms.HK23NAR1
                                                 CompanyAddressLine1 = "456 Creative Ave",
                                                 CompanyAddressLine2 = "Suite 200",
                                                 CompanyAddressLine3 = "Creativity Town",
-                                                CompanyAddressLine4 = "SolutionState 02222"
+                                                CompanyAddressLine4 = "SolutionState 02222",
+                                                ContinuationSheetE = "Y"
                                             },
                                                 new CompanyRecord
                                             {
@@ -235,7 +237,8 @@ namespace TestTornado.Forms.HK23NAR1
                                                 CompanyAddressLine1 = "123 Tech Road",
                                                 CompanyAddressLine2 = "Tech Park",
                                                 CompanyAddressLine3 = "Innovation City",
-                                                CompanyAddressLine4 = "TechState 01011"
+                                                CompanyAddressLine4 = "TechState 01011",
+                                                ContinuationSheetE = "Y"
                                             },
                                             new CompanyRecord
                                             {
@@ -243,7 +246,8 @@ namespace TestTornado.Forms.HK23NAR1
                                                 CompanyAddressLine1 = "456 Creative Ave",
                                                 CompanyAddressLine2 = "Suite 200",
                                                 CompanyAddressLine3 = "Creativity Town",
-                                                CompanyAddressLine4 = "SolutionState 02222"
+                                                CompanyAddressLine4 = "SolutionState 02222",
+                                                ContinuationSheetE = "Y"
                                             },
                                                 new CompanyRecord
                                             {
