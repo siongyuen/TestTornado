@@ -12,7 +12,7 @@ namespace TestTornado
 {
     class CSRenderExample
     {
-        private static string DWS_RENDER_URL = "http://localhost:8080/api/render";
+        private static string DWS_RENDER_URL = "http://my-docmosis.westeurope.azurecontainer.io:8080/api/render";
 
         // Set your access key here. The access key is only required if configured in Tornado.
         private const string ACCESS_KEY = "";
@@ -140,12 +140,12 @@ static async Task Main(string[] args)
         {
             return new Dictionary<string, Func<(object? data, string template)>>
             {
-        { "0", () => (Forms.Repeating.DataGenerator.GetData(), "samples/RepeatingTemplate.docx") },
-        { "1", () => (TestTornado.Forms.GI19FDMS01.DataGenerator.GetData(), "samples/GI19FDMS01.DOCX") },
-        { "2", () => (TestTornado.Forms.GNIR24AP01.DataGenerator.GetData(), "samples/GNIR24AP01.DOCX") },
-        { "3", () => (TestTornado.Forms.EAW18AR01.DataGenerator.GetData(), "samples/EAW18AR01.docx") },
-        { "4", () => (TestTornado.Forms.HK23NAR1.DataGenerator.GetData(), "samples/HK23NAR1.docx") },
-        { "5", () => (TestTornado.Forms.PrefilledPDF.DataGenerator.GetData(), "samples/pre-filled-pdf.odt") }
+        { "0", () => (Forms.Repeating.DataGenerator.GetData(), "REPEATINGTEMPLATE.DOCX") },
+        { "1", () => (TestTornado.Forms.GI19FDMS01.DataGenerator.GetData(), "GI19FDMS01.DOCX") },
+        { "2", () => (TestTornado.Forms.GNIR24AP01.DataGenerator.GetData(), "GNIR24AP01.DOCX") },
+        { "3", () => (TestTornado.Forms.EAW18AR01.DataGenerator.GetData(), "EAW18AR01.DOCX") },
+        { "4", () => (TestTornado.Forms.HK23NAR1.DataGenerator.GetData(), "HK23NAR1.DOCX") },
+        { "5", () => (TestTornado.Forms.PrefilledPDF.DataGenerator.GetData(), "pre-filled-pdf.odt") }
             };
         }
 
