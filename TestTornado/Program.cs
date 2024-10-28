@@ -13,13 +13,12 @@ namespace TestTornado
     class CSRenderExample
     {
 
-static async Task Main(string[] args)
-    {
+        static async Task Main(string[] args)
+        {
             do
             {
                 string templateSelection = GetTemplateSelection();
                 string outputFormat = GetOutputFormat();
-
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
                 try
@@ -34,13 +33,10 @@ static async Task Main(string[] args)
                 {
                     HandleException(e);
                 }
-
                 if (!AskToContinue())
                     break;
-
-
             } while (true);
-    }
+        }
 
         private static bool AskToContinue()
         {
@@ -52,16 +48,17 @@ static async Task Main(string[] args)
         private static async Task ProcessTemplateRequest(string templateSelection, string outputFormat, Stopwatch stopwatch)
         {
             string outputFile = $"output_{DateTime.Now:yyyyMMddHHmmss}";
-
             Dictionary<string, Func<(object? data, string template)>> templateDataMapping = MapTemplateGenerator();
-
             if (!templateDataMapping.TryGetValue(templateSelection, out var dataTemplateFunc))
             {
                 throw new ArgumentException("Invalid type specified");
             }
-
             // Execute the Func to get the data and template only if the type is valid
             var myDataTemplate = dataTemplateFunc.Invoke();
+            if (myDataTemplate.data == null)
+            {
+                throw new ApplicationException("No data prepared");
+            }
             DocmosisRequest docmosisRequest = new DocmosisRequest()
             {
                 TemplateName = myDataTemplate.template,
@@ -72,11 +69,24 @@ static async Task Main(string[] args)
             var responseStream = await DocmosisClient.SendRequestAsync(docmosisRequest);
             if (responseStream != null)
             {
-                await SaveToFileAsync(responseStream, $"{outputFile}.{outputFormat}");
-                Console.WriteLine($"File saved as {outputFile}");
-                Console.Out.WriteLine($"Time Used milliseconds: {stopwatch.ElapsedMilliseconds}");
-                Console.Out.WriteLine($"Press any key to continue");
+                await DocumentHandler.SaveToFileAsync(responseStream, $"{outputFile}.{outputFormat}");
+                Console.Out.WriteLine($"File saved as {outputFile}");
+                Console.Out.WriteLine($"Time Used milliseconds: {stopwatch.ElapsedMilliseconds}");          
             }
+        }
+           
+
+        private static string GetTemplateSelection()
+        {
+            Console.WriteLine("Select the form type: \n" +
+                                      "'0' for Repeating \n" +
+                                      "'1' for GI19FDMSO1 \n" +
+                                      "'2' for GNIR24AP01 \n" +
+                                      "'3' for EAW18AR01 \n" +
+                                      "'4' for HK23NAR1 \n" +
+                                      "'5' for prefilled pdf");
+            return Console.ReadLine();
+            
         }
 
         private static string GetOutputFormat()
@@ -93,19 +103,6 @@ static async Task Main(string[] args)
                 _ => "DOCX" // Default format
             };
             return outputFormat;
-        }
-
-        private static string GetTemplateSelection()
-        {
-            Console.WriteLine("Select the form type: \n" +
-                                      "'0' for Repeating \n" +
-                                      "'1' for GI19FDMSO1 \n" +
-                                      "'2' for GNIR24AP01 \n" +
-                                      "'3' for EAW18AR01 \n" +
-                                      "'4' for HK23NAR1 \n" +
-                                      "'5' for prefilled pdf");
-            string templateSelection = Console.ReadLine();
-            return templateSelection;
         }
 
         private static void HandleException(Exception e)
@@ -133,32 +130,6 @@ static async Task Main(string[] args)
                 { "4", () => (TestTornado.Forms.HK23NAR1.DataGenerator.GetData(), "HK23NAR1.DOCX") },
                 { "5", () => (TestTornado.Forms.PrefilledPDF.DataGenerator.GetData(), "pre-filled-pdf.odt") }
             };
-        }
-
-        private static async Task SaveToFileAsync(Stream content, string outputFilePath)
-        {
-            await using (var fileStream = File.Create(outputFilePath))
-            {
-                await content.CopyToAsync(fileStream);
-            }
-            OpenDocxFile(outputFilePath);
-        }
-
-        private static void OpenDocxFile(string filePath)
-        {
-            try
-            {
-                // Use Process.Start to open the file with the default application
-                Process.Start(new ProcessStartInfo(filePath) { UseShellExecute = true });
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error opening file: {ex.Message}");
-            }
-        }
-
-   
+        }   
     }
-
-
 }
