@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestTornado.Forms.GNIR24AP01;
-
+﻿
 namespace TestTornado.Forms.GI19FDMS01
 {
     public class DataGenerator

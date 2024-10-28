@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-
+﻿
 namespace TestTornado.Forms.EAW18AR01
 {
-
     public class DataGenerator
 {
     private static Random random = new Random();
