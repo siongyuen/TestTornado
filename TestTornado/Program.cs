@@ -17,90 +17,121 @@ static async Task Main(string[] args)
     {
             do
             {
-                Console.WriteLine("Select the form type: \n" +
-                          "'0' for Repeating \n" +
-                          "'1' for GI19FDMSO1 \n" +
-                          "'2' for GNIR24AP01 \n" +
-                          "'3' for EAW18AR01 \n" +
-                          "'4' for HK23NAR1 \n" +
-                          "'5' for prefilled pdf");
-        string templateSelection = Console.ReadLine();
+                string templateSelection = GetTemplateSelection();
+                string outputFormat = GetOutputFormat();
 
-            Console.WriteLine("Select the output file format: \n" +
-                              "'1' for PDF \n" +
-                              "'2' for DOCX");
-                          
-        string formatChoice = Console.ReadLine();
-        string outputFormat = formatChoice switch
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                try
+                {
+                    await ProcessTemplateRequest(templateSelection, outputFormat, stopwatch);
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine($"ERROR: {e.Message}");
+                }
+                catch (Exception e)
+                {
+                    HandleException(e);
+                }
+
+                if (!AskToContinue())
+                    break;
+
+
+            } while (true);
+    }
+
+        private static bool AskToContinue()
         {
-            "1" => "PDF",
-            "2" => "DOCX",    
-            _ => "DOCX" // Default format
-        };
+            Console.Out.WriteLine("Press any key to continue or type 'exit' to quit:");
+            string userInput = Console.ReadLine();
+            return userInput?.ToLower() != "exit";
+        }
 
-       
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            try
+        private static async Task ProcessTemplateRequest(string templateSelection, string outputFormat, Stopwatch stopwatch)
+        {
+            string outputFile = $"output_{DateTime.Now:yyyyMMddHHmmss}";
+
+            Dictionary<string, Func<(object? data, string template)>> templateDataMapping = MapTemplateGenerator();
+
+            if (!templateDataMapping.TryGetValue(templateSelection, out var dataTemplateFunc))
             {
-                    string outputFile = $"output_{DateTime.Now:yyyyMMddHHmmss}";
-                  
-                    Dictionary<string, Func<(object? data, string template)>> templateDataMapping = MapTemplateGenerator();
-
-                    if (!templateDataMapping.TryGetValue(templateSelection, out var dataTemplateFunc))
-                    {
-                        throw new ArgumentException("Invalid type specified");
-                    }
-
-                    // Execute the Func to get the data and template only if the type is valid
-                    var myDataTemplate = dataTemplateFunc.Invoke();
-                    DocmosisRequest docmosisRequest = new DocmosisRequest()
-                    {
-                        TemplateName = myDataTemplate.template,
-                        OutputFileName = outputFile,
-                        OutputFormat = outputFormat,
-                        InputData = myDataTemplate.data 
-                    };
-                    var responseStream = await DocmosisClient.SendRequestAsync(docmosisRequest);
-                    if (responseStream != null)
-                    {                   
-                        await SaveToFileAsync(responseStream, $"{outputFile}.{outputFormat}");
-                        Console.WriteLine($"File saved as {outputFile}");
-                        Console.Out.WriteLine($"Time Used milliseconds: {stopwatch.ElapsedMilliseconds}");
-                        Console.Out.WriteLine($"Press any key to continue");
-                    }
+                throw new ArgumentException("Invalid type specified");
             }
-            catch (HttpRequestException e)
+
+            // Execute the Func to get the data and template only if the type is valid
+            var myDataTemplate = dataTemplateFunc.Invoke();
+            DocmosisRequest docmosisRequest = new DocmosisRequest()
             {
-                Console.WriteLine($"ERROR: {e.Message}");
+                TemplateName = myDataTemplate.template,
+                OutputFileName = outputFile,
+                OutputFormat = outputFormat,
+                InputData = myDataTemplate.data
+            };
+            var responseStream = await DocmosisClient.SendRequestAsync(docmosisRequest);
+            if (responseStream != null)
+            {
+                await SaveToFileAsync(responseStream, $"{outputFile}.{outputFormat}");
+                Console.WriteLine($"File saved as {outputFile}");
+                Console.Out.WriteLine($"Time Used milliseconds: {stopwatch.ElapsedMilliseconds}");
+                Console.Out.WriteLine($"Press any key to continue");
             }
-            catch (Exception e)
+        }
+
+        private static string GetOutputFormat()
+        {
+            Console.WriteLine("Select the output file format: \n" +
+                                              "'1' for PDF \n" +
+                                              "'2' for DOCX");
+
+            string formatChoice = Console.ReadLine();
+            string outputFormat = formatChoice switch
             {
-                Console.Error.WriteLine("Unable to connect to Docmosis: " + e.Message);
+                "1" => "PDF",
+                "2" => "DOCX",
+                _ => "DOCX" // Default format
+            };
+            return outputFormat;
+        }
+
+        private static string GetTemplateSelection()
+        {
+            Console.WriteLine("Select the form type: \n" +
+                                      "'0' for Repeating \n" +
+                                      "'1' for GI19FDMSO1 \n" +
+                                      "'2' for GNIR24AP01 \n" +
+                                      "'3' for EAW18AR01 \n" +
+                                      "'4' for HK23NAR1 \n" +
+                                      "'5' for prefilled pdf");
+            string templateSelection = Console.ReadLine();
+            return templateSelection;
+        }
+
+        private static void HandleException(Exception e)
+        {
+            if (e is HttpRequestException httpRequestException)
+            {
+                Console.WriteLine($"ERROR: {httpRequestException.Message}");
+            }
+            else
+            {
+                Console.Error.WriteLine("An error occurred: " + e.Message);
                 Console.Error.WriteLine(e.StackTrace);
                 Console.Error.WriteLine("If you have a proxy, configure proxy settings at the top of this example.");
-            }       
-
-            // Prompt to continue or exit          
-            templateSelection = Console.ReadLine();
-            if (templateSelection.ToLower() == "exit")
-            {
-                break; // Exit the loop and end the program
             }
-
-        } while (true);
-    }
+        }
 
         private static Dictionary<string, Func<(object? data, string template)>> MapTemplateGenerator()
         {
             return new Dictionary<string, Func<(object? data, string template)>>
             {
-        { "0", () => (Forms.Repeating.DataGenerator.GetData(), "REPEATINGTEMPLATE.DOCX") },
-        { "1", () => (TestTornado.Forms.GI19FDMS01.DataGenerator.GetData(), "GI19FDMS01.DOCX") },
-        { "2", () => (TestTornado.Forms.GNIR24AP01.DataGenerator.GetData(), "GNIR24AP01.DOCX") },
-        { "3", () => (TestTornado.Forms.EAW18AR01.DataGenerator.GetData(), "EAW18AR01.DOCX") },
-        { "4", () => (TestTornado.Forms.HK23NAR1.DataGenerator.GetData(), "HK23NAR1.DOCX") },
-        { "5", () => (TestTornado.Forms.PrefilledPDF.DataGenerator.GetData(), "pre-filled-pdf.odt") }
+                { "0", () => (TestTornado.Forms.Repeating.DataGenerator.GetData(), "REPEATINGTEMPLATE.DOCX") },
+                { "1", () => (TestTornado.Forms.GI19FDMS01.DataGenerator.GetData(), "GI19FDMS01.DOCX") },
+                { "2", () => (TestTornado.Forms.GNIR24AP01.DataGenerator.GetData(), "GNIR24AP01.DOCX") },
+                { "3", () => (TestTornado.Forms.EAW18AR01.DataGenerator.GetData(), "EAW18AR01.DOCX") },
+                { "4", () => (TestTornado.Forms.HK23NAR1.DataGenerator.GetData(), "HK23NAR1.DOCX") },
+                { "5", () => (TestTornado.Forms.PrefilledPDF.DataGenerator.GetData(), "pre-filled-pdf.odt") }
             };
         }
 
