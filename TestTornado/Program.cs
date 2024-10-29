@@ -1,5 +1,6 @@
 ﻿
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace TestTornado
 {
@@ -41,7 +42,7 @@ namespace TestTornado
         private static async Task ProcessTemplateRequest(string templateSelection, string outputFormat, Stopwatch stopwatch)
         {
             string outputFile = $"output_{DateTime.Now:yyyyMMddHHmmss}";
-            Dictionary<string, Func<(object? data, string template)>> templateDataMapping = MapTemplateGenerator();
+            Dictionary<string, Func<(string? data, string template)>> templateDataMapping = MapTemplateGenerator();
             if (!templateDataMapping.TryGetValue(templateSelection, out var dataTemplateFunc))
             {
                 throw new ArgumentException("Invalid type specified");
@@ -112,17 +113,24 @@ namespace TestTornado
             }
         }
 
-        private static Dictionary<string, Func<(object? data, string template)>> MapTemplateGenerator()
+        private static Dictionary<string, Func<(string? data, string template)>> MapTemplateGenerator()
         {
-            return new Dictionary<string, Func<(object? data, string template)>>
-            {
-                { "0", () => (TestTornado.Forms.Repeating.DataGenerator.GetData(), "REPEATINGTEMPLATE.DOCX") },
-                { "1", () => (TestTornado.Forms.GI19FDMS01.DataGenerator.GetData(), "GI19FDMS01.DOCX") },
-                { "2", () => (TestTornado.Forms.GNIR24AP01.DataGenerator.GetData(), "GNIR24AP01.DOCX") },
-                { "3", () => (TestTornado.Forms.EAW18AR01.DataGenerator.GetData(), "EAW18AR01.DOCX") },
-                { "4", () => (TestTornado.Forms.HK23NAR1.DataGenerator.GetData(), "HK23NAR1.DOCX") },
-                { "5", () => (TestTornado.Forms.PrefilledPDF.DataGenerator.GetData(), "pre-filled-pdf.odt") }
-            };
-        }   
+            return new Dictionary<string, Func<(string? data, string template)>>
+    {
+        { "0", () => SerializeData(TestTornado.Forms.Repeating.DataGenerator.GetData(), "REPEATINGTEMPLATE.DOCX") },
+        { "1", () => SerializeData(TestTornado.Forms.GI19FDMS01.DataGenerator.GetData(), "GI19FDMS01.DOCX") },
+        { "2", () => SerializeData(TestTornado.Forms.GNIR24AP01.DataGenerator.GetData(), "GNIR24AP01.DOCX") },
+        { "3", () => SerializeData(TestTornado.Forms.EAW18AR01.DataGenerator.GetData(), "EAW18AR01.DOCX") },
+        { "4", () => SerializeData(TestTornado.Forms.HK23NAR1.DataGenerator.GetData(), "HK23NAR1.DOCX") },
+        { "5", () => SerializeData(TestTornado.Forms.PrefilledPDF.DataGenerator.GetData(), "pre-filled-pdf.odt") }
+    };
+        }
+
+        private static (string? data, string template) SerializeData(object data, string templateFile)
+        {
+            var serializedData = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
+            return (serializedData, templateFile);
+        }
+
     }
 }

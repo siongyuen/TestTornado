@@ -41,15 +41,13 @@ namespace TestTornado
         /// Build the request in JSON format.
         private static string BuildRequest(DocmosisRequest docmosisRequest)
         {
-         
-
             var requestObject = new
             {
                 accessKey = ACCESS_KEY,
                 templateName = docmosisRequest.TemplateName,
                 outputName = docmosisRequest.OutputFileName,
                 outputFormat = docmosisRequest.OutputFormat,
-                data = docmosisRequest.InputData
+                data = JsonDocument.Parse(docmosisRequest.InputData)
             };
 
             return JsonSerializer.Serialize(requestObject, new JsonSerializerOptions { WriteIndented = true });
