@@ -75,6 +75,7 @@ namespace TestTornado
             var responseStream = await client.SendRequestAsync(docmosisRequest);
             if (responseStream != null)
             {
+                if (outputFormat.Contains(";")) outputFormat = "zip";
                 await DocumentHandler.SaveToFileAsync(responseStream, $"{outputFile}.{outputFormat}");
                 Console.Out.WriteLine($"File saved as {outputFile}");
                 Console.Out.WriteLine($"Time Used milliseconds: {stopwatch.ElapsedMilliseconds}");          
