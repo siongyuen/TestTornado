@@ -13,8 +13,7 @@ namespace TestTornado
         {
             var services = new ServiceCollection();
             ConfigureServices(services);
-            var serviceProvider=  services.BuildServiceProvider();
-     
+            var serviceProvider=  services.BuildServiceProvider();     
             do
             {
                 string templateSelection = GetTemplateSelection();
@@ -39,6 +38,7 @@ namespace TestTornado
         }
         private static void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<DocmosisClient, DocmosisClient>();
             services.AddHttpClient<DocmosisClient>();
         }
 
