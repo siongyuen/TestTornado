@@ -67,7 +67,8 @@ namespace TestTornado
                 TemplateName = myDataTemplate.template,
                 OutputFileName = outputFile,
                 OutputFormat = outputFormat,
-                InputData = myDataTemplate.data
+                InputData = myDataTemplate.data,
+                DevMode = "y"
             };
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();

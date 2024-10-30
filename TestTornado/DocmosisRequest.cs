@@ -8,5 +8,6 @@ namespace TestTornado
         public string OutputFormat { get; set; }
         public string OutputFileName { get; set; }
         public string InputData { get; set; }
+        public string DevMode { get; set; }
     }
 }
