@@ -6,6 +6,10 @@ namespace TestTornado
     public class DocmosisClient
 
     {
+        private readonly HttpClient _httpClient;
+        public DocmosisClient(HttpClient httpClient) 
+        { _httpClient = httpClient; }    
+
         private static string DWS_RENDER_URL = "http://my-docmosis.westeurope.azurecontainer.io:8080/api/render";
         // Set your access key here. The access key is only required if configured in Tornado.
         private const string ACCESS_KEY = "";
@@ -14,18 +18,15 @@ namespace TestTornado
         // The name of the file we are going to write the document to
         private const string OUTPUT_FILE = "Output." + OUTPUT_FORMAT;
         /// Sends the request to the server and returns the response stream.
-        public static async Task<Stream> SendRequestAsync(DocmosisRequest docmosisRequest)
+        public async Task<Stream> SendRequestAsync(DocmosisRequest docmosisRequest)
         {
-
-            using (HttpClient client = new HttpClient())
-            {
+  
                 string renderRequest = BuildRequest(docmosisRequest);
-
                 // Prepare the request content
                 StringContent content = new StringContent(renderRequest, Encoding.UTF8, "application/json");
 
                 // Send the POST request
-                HttpResponseMessage response = await client.PostAsync(DWS_RENDER_URL, content);
+                HttpResponseMessage response = await _httpClient.PostAsync(DWS_RENDER_URL, content);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -36,7 +37,7 @@ namespace TestTornado
                     await ProcessError(response);
                     return null;
                 }
-            }
+            
         }
         /// Build the request in JSON format.
         private static string BuildRequest(DocmosisRequest docmosisRequest)

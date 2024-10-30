@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -9,6 +11,10 @@ namespace TestTornado
 
         static async Task Main(string[] args)
         {
+            var services = new ServiceCollection();
+            ConfigureServices(services);
+            var serviceProvider=  services.BuildServiceProvider();
+     
             do
             {
                 string templateSelection = GetTemplateSelection();
@@ -17,7 +23,7 @@ namespace TestTornado
                 stopwatch.Start();
                 try
                 {
-                    await ProcessTemplateRequest(templateSelection, outputFormat, stopwatch);
+                    await ProcessTemplateRequest(serviceProvider, templateSelection, outputFormat, stopwatch);
                 }
                 catch (HttpRequestException e)
                 {
@@ -31,6 +37,10 @@ namespace TestTornado
                     break;
             } while (true);
         }
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddHttpClient<DocmosisClient>();
+        }
 
         private static bool AskToContinue()
         {
@@ -39,7 +49,7 @@ namespace TestTornado
             return userInput?.ToLower() != "exit";
         }
 
-        private static async Task ProcessTemplateRequest(string templateSelection, string outputFormat, Stopwatch stopwatch)
+        private static async Task ProcessTemplateRequest(ServiceProvider serviceProvider,string templateSelection, string outputFormat, Stopwatch stopwatch)
         {
             string outputFile = $"output_{DateTime.Now:yyyyMMddHHmmss}";
             Dictionary<string, Func<(string? data, string template)>> templateDataMapping = MapTemplateGenerator();
@@ -60,7 +70,8 @@ namespace TestTornado
                 OutputFormat = outputFormat,
                 InputData = myDataTemplate.data
             };
-            var responseStream = await DocmosisClient.SendRequestAsync(docmosisRequest);
+            var client = serviceProvider.GetRequiredService<DocmosisClient>();
+            var responseStream = await client.SendRequestAsync(docmosisRequest);
             if (responseStream != null)
             {
                 await DocumentHandler.SaveToFileAsync(responseStream, $"{outputFile}.{outputFormat}");
