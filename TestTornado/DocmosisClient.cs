@@ -50,7 +50,7 @@ namespace TestTornado
                 data = JsonDocument.Parse(docmosisRequest.InputData)
             };
 
-            return JsonSerializer.Serialize(requestObject, new JsonSerializerOptions { WriteIndented = true });
+            return JsonSerializer.Serialize(requestObject);
         }
 
       
