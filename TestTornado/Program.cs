@@ -99,13 +99,15 @@ namespace TestTornado
         {
             Console.WriteLine("Select the output file format: \n" +
                                               "'1' for PDF \n" +
-                                              "'2' for DOCX");
+                                              "'2' for DOCX \n" + 
+                                              "'3' for PDF + DOCX");
 
             string formatChoice = Console.ReadLine();
             string outputFormat = formatChoice switch
             {
                 "1" => "PDF",
                 "2" => "DOCX",
+                "3" => "PDF;DOCX",
                 _ => "DOCX" // Default format
             };
             return outputFormat;
