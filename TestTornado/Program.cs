@@ -13,16 +13,15 @@ namespace TestTornado
         {
             var services = new ServiceCollection();
             ConfigureServices(services);
-            var serviceProvider=  services.BuildServiceProvider();     
+            using var serviceProvider=  services.BuildServiceProvider();     
+
             do
             {
                 string templateSelection = GetTemplateSelection();
-                string outputFormat = GetOutputFormat();
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
+                string outputFormat = GetOutputFormat();             
                 try
                 {
-                    await ProcessTemplateRequest(serviceProvider, templateSelection, outputFormat, stopwatch);
+                    await ProcessTemplateRequest(serviceProvider, templateSelection, outputFormat);
                 }
                 catch (HttpRequestException e)
                 {
@@ -49,8 +48,8 @@ namespace TestTornado
             return userInput?.ToLower() != "exit";
         }
 
-        private static async Task ProcessTemplateRequest(ServiceProvider serviceProvider,string templateSelection, string outputFormat, Stopwatch stopwatch)
-        {
+        private static async Task ProcessTemplateRequest(ServiceProvider serviceProvider,string templateSelection, string outputFormat)
+        {    
             string outputFile = $"output_{DateTime.Now:yyyyMMddHHmmss}";
             Dictionary<string, Func<(string? data, string template)>> templateDataMapping = MapTemplateGenerator();
             if (!templateDataMapping.TryGetValue(templateSelection, out var dataTemplateFunc))
@@ -70,6 +69,8 @@ namespace TestTornado
                 OutputFormat = outputFormat,
                 InputData = myDataTemplate.data
             };
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             var client = serviceProvider.GetRequiredService<DocmosisClient>();
             var responseStream = await client.SendRequestAsync(docmosisRequest);
             if (responseStream != null)
