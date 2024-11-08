@@ -92,7 +92,8 @@ namespace TestTornado
                                       "'2' for GNIR24AP01 \n" +
                                       "'3' for EAW18AR01 \n" +
                                       "'4' for HK23NAR1 \n" +
-                                      "'5' for prefilled pdf");
+                                      "'5' for prefilled pdf \n" +
+                                      "'6' for IM12");
             return Console.ReadLine();
             
         }
@@ -138,7 +139,8 @@ namespace TestTornado
         { "2", () => SerializeData(TestTornado.Forms.GNIR24AP01.DataGenerator.GetData(), "GNIR24AP01.DOCX") },
         { "3", () => SerializeData(TestTornado.Forms.EAW18AR01.DataGenerator.GetData(), "EAW18AR01.DOCX") },
         { "4", () => SerializeData(TestTornado.Forms.HK23NAR1.DataGenerator.GetData(), "HK23NAR1.DOCX") },
-        { "5", () => SerializeData(TestTornado.Forms.PrefilledPDF.DataGenerator.GetData(), "pre-filled-pdf.odt") }
+        { "5", () => SerializeData(TestTornado.Forms.PrefilledPDF.DataGenerator.GetData(), "pre-filled-pdf.odt") },
+        { "6", () => SerializeData(TestTornado.Forms.NMVIM12.DataGenerator.GetData(), "NMVIM12-docmosis.docx") }
     };
         }
 
