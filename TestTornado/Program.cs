@@ -140,7 +140,7 @@ namespace TestTornado
         { "3", () => SerializeData(TestTornado.Forms.EAW18AR01.DataGenerator.GetData(), "EAW18AR01.DOCX") },
         { "4", () => SerializeData(TestTornado.Forms.HK23NAR1.DataGenerator.GetData(), "HK23NAR1.DOCX") },
         { "5", () => SerializeData(TestTornado.Forms.PrefilledPDF.DataGenerator.GetData(), "pre-filled-pdf.odt") },
-        { "6", () => SerializeData(TestTornado.Forms.NMVIM12.DataGenerator.GetData(), "NMVIM12-docmosis.docx") }
+        { "6", () => SerializeData(TestTornado.Forms.NMVIM12.DataGenerator.GetData(), "NMVIM12-docmosis") }
     };
         }
 
