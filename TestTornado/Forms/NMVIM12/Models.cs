@@ -10,6 +10,15 @@ namespace TestTornado.Forms.NMVIM12
     {
         public string? UnitNumber { get; init; }
         public string? FloorNumber { get; init; }
+        public string? Block { get; init; }
+        public string? BuildingName { get; init; }
+        public string? Street { get; init; }
+        public string? Village { get; init; }
+        public string? District { get; init; }
+        public string? City { get; init; }
+        public string? Region { get; init; }
+        public string? Postcode { get; init; }
+        public string? CountryName { get; init; }
     }
 
     public record Individual
