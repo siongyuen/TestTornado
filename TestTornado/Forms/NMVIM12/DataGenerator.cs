@@ -23,6 +23,7 @@ namespace TestTornado.Forms.NMVIM12
                     {
                         DateAppointed = "2022-01-15",
                         NatureOfDirector = "Managing Director",
+                        OfficerType="NCD",
                         Individual = new Individual
                         {
                             FullName = "John Doe",
@@ -30,14 +31,10 @@ namespace TestTornado.Forms.NMVIM12
                             {
                                 UnitNumber = "12A",
                                 FloorNumber = "7",
-                                Block = "B1",
-                                BuildingName = "Tech Towers",
-                                Street = "Innovation Road",
-                                Village = "Tech Village",
-                                District = "Business District",
-                                City = "Kuala Lumpur",
-                                Region = "Central Region",
-                                CountryName = "Malaysia"
+                                BuildingName = "Tower A",
+                                Street = "Major Street",
+                                Postcode = "12345",
+                                CountryName ="Malaysia"
                             }
                         }
                     },
@@ -45,6 +42,7 @@ namespace TestTornado.Forms.NMVIM12
                     {
                         DateAppointed = "2023-03-10",
                         NatureOfDirector = "Finance Director",
+                        OfficerType ="RCD",
                         Individual = new Individual
                         {
                             FullName = "Jane Smith",
@@ -52,14 +50,10 @@ namespace TestTornado.Forms.NMVIM12
                             {
                                 UnitNumber = "3B",
                                 FloorNumber = "5",
-                                Block = "A2",
-                                BuildingName = "Finance Plaza",
-                                Street = "Money Street",
-                                Village = "Finance Village",
-                                District = "Financial District",
-                                City = "Kuala Lumpur",
-                                Region = "Central Region",
-                                CountryName = "Malaysia"
+                                 BuildingName = "Tower B",
+                                 Street = "Minor Street",
+                                      Postcode = "12345",
+                                CountryName ="Malaysia"
                             }
                         }
                     },
@@ -67,6 +61,7 @@ namespace TestTornado.Forms.NMVIM12
                     {
                         DateAppointed = "2024-02-20",
                         NatureOfDirector = "Operations Director",
+                        OfficerType ="CCD",
                         Individual = new Individual
                         {
                             FullName = "Emily Johnson",
@@ -74,14 +69,10 @@ namespace TestTornado.Forms.NMVIM12
                             {
                                 UnitNumber = "8C",
                                 FloorNumber = "2",
-                                Block = "C3",
-                                BuildingName = "Ops Center",
-                                Street = "Operations Lane",
-                                Village = "Ops Village",
-                                District = "Operations District",
-                                City = "Kuala Lumpur",
-                                Region = "Central Region",
-                                CountryName = "Malaysia"
+                                 BuildingName = "Tower C",
+                                 Street = "Big Street",
+                                      Postcode = "12345",
+                                CountryName ="Malaysia"
                             }
                         }
                     }
@@ -99,7 +90,6 @@ namespace TestTornado.Forms.NMVIM12
                 },
                 EffectiveDate = "2024-11-01"
             };
-
             return rootObject;
         }
     }
