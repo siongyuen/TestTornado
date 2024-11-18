@@ -10,7 +10,7 @@ namespace TestTornado
         public DocmosisClient(HttpClient httpClient) 
         { _httpClient = httpClient; }    
 
-        private static string DWS_RENDER_URL = "http://my-docmosis.westeurope.azurecontainer.io:8080/api/render";
+        private static string DWS_RENDER_URL = "http://dev-docmosis.westeurope.azurecontainer.io:8080/api/render";
         // Set your access key here. The access key is only required if configured in Tornado.
         private const string ACCESS_KEY = "";
         // The output format we want to produce (pdf, doc, odt, and more exist)
